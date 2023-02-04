@@ -29,6 +29,10 @@ export class AuthUserRepository implements CRUDRepository<AuthUserEntity, string
     return this.authUserModel.findById(id).exec();
   }
 
+  public async getCount(): Promise<Number> {
+    return this.authUserModel.countDocuments({});
+  }
+
   public async update(id: string, item: AuthUserEntity): Promise<User> {
     return this.authUserModel
       .findByIdAndUpdate(id, item.toObject(), {new: true})
