@@ -5,6 +5,7 @@ enum EnvValidationMessage {
   DBUserNotRequired = 'MongoDB user is not required',
   DBPasswordNotRequired = 'MongoDB password is not required',
   DBBaseAuthNotRequired = 'MongoDB authentication base is not required',
+  JWTSecretNotRequired = 'JWT secret is not required',
 }
 
 enum MongoOptionFields {

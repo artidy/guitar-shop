@@ -34,6 +34,11 @@ class EnvironmentsConfig {
     message: EnvValidationMessage.DBBaseAuthNotRequired
   })
   public MONGO_AUTH_BASE: string;
+
+  @IsString({
+    message: EnvValidationMessage.JWTSecretNotRequired
+  })
+  public JWT_SECRET: string;
 }
 
 export function validateEnvironments(config: Record<string, unknown>) {
