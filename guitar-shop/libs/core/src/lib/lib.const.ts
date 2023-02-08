@@ -6,6 +6,8 @@ enum EnvValidationMessage {
   DBPasswordNotRequired = 'MongoDB password is not required',
   DBBaseAuthNotRequired = 'MongoDB authentication base is not required',
   JWTSecretNotRequired = 'JWT secret is not required',
+  PgAdminEmailNotRequired = 'PG admin email is not required',
+  PgAdminServerModeNotRequired = 'PG admin server mode is not required',
 }
 
 enum MongoOptionFields {
