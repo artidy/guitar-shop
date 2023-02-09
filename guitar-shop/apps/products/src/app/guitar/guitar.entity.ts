@@ -7,7 +7,7 @@ export class GuitarEntity implements Entity<Product>, Product {
   description: string;
   createdAt: Date;
   previewPath: string;
-  type: GuitarType;
+  type: string;
   article: string;
   stringCount: number;
   price: number;

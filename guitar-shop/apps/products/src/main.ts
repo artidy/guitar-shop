@@ -9,7 +9,7 @@ import { DEFAULT_PORT, GLOBAL_PREFIX } from '@guitar-shop/core';
 
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as process from 'process';
+import process from 'process';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
