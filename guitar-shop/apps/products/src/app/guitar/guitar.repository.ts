@@ -32,6 +32,7 @@ export class GuitarRepository implements CRUDRepository<GuitarEntity, number, Pr
 
   public async update(id: number, guitarEntity: GuitarEntity): Promise<Product> {
     const guitar = guitarEntity.toObject();
+
     return this.prisma.product.update({
       where: {
         id

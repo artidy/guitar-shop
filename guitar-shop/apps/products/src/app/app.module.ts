@@ -5,6 +5,7 @@ import { ENV_FILE_PATH } from './app.constant';
 import { validateEnvironments } from './env.validation';
 import { PrismaModule } from './prisma/prisma.module';
 import { GuitarModule } from './guitar/guitar.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { GuitarModule } from './guitar/guitar.module';
       validate: validateEnvironments,
     }),
     PrismaModule,
-    GuitarModule
+    GuitarModule,
+    CommentModule
   ]
 })
 export class AppModule {}
