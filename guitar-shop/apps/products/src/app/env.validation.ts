@@ -31,11 +31,6 @@ class EnvironmentsConfig {
   public POSTGRES_PASSWORD: string;
 
   @IsString({
-    message: EnvValidationMessage.DBBaseAuthNotRequired
-  })
-  public DATABASE_URL: string;
-
-  @IsString({
     message: EnvValidationMessage.PgAdminEmailNotRequired
   })
   public PGADMIN_DEFAULT_EMAIL: string;
@@ -43,7 +38,7 @@ class EnvironmentsConfig {
   @IsBoolean({
     message: EnvValidationMessage.PgAdminServerModeNotRequired
   })
-  PGADMIN_CONFIG_SERVER_MODE: boolean;
+  public PGADMIN_CONFIG_SERVER_MODE: boolean;
 }
 
 export function validateEnvironments(config: Record<string, unknown>) {

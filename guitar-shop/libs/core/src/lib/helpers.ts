@@ -20,5 +20,5 @@ function fillObject<T, V>(someDto: ClassConstructor<T>, plainObject: V) {
 export {
   getMongoConnectionString,
   fillEntity,
-  fillObject
+  fillObject,
 }
