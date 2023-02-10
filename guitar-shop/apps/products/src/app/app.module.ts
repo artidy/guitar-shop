@@ -6,6 +6,7 @@ import { validateEnvironments } from './env.validation';
 import { PrismaModule } from './prisma/prisma.module';
 import { GuitarModule } from './guitar/guitar.module';
 import { CommentModule } from './comment/comment.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { CommentModule } from './comment/comment.module';
     }),
     PrismaModule,
     GuitarModule,
-    CommentModule
+    CommentModule,
+    OrderModule
   ]
 })
 export class AppModule {}
