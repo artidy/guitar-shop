@@ -21,6 +21,7 @@ model Product {
   stringCount     Int
   price           Int
   comments        Comment[]
+  orders          OrderList[]
 }
 
 model Comment {
@@ -33,4 +34,23 @@ model Comment {
   createdAt       DateTime @default(now())
   productId       Int
   product         Product @relation(fields: [productId], references: [id])
+}
+
+model Order {
+  id              Int @id @default(autoincrement())
+  userId          String
+  createdAt       DateTime @default(now())
+  orderList       OrderList[]
+}
+
+model OrderList {
+  id              Int @id @default(autoincrement())
+  orderId         Int
+  order           Order @relation(fields: [orderId], references: [id])
+  productId       Int
+  product         Product @relation(fields: [productId], references: [id])
+  price           Int
+  count           Int
+  sum             Int
+  createdAt       DateTime @default(now())
 }
