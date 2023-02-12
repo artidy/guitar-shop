@@ -1,5 +1,5 @@
 import { ClassConstructor, plainToInstance } from 'class-transformer';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 function getMongoConnectionString({username, password, host, port, databaseName, authDatabase}): string {
   return `mongodb://${username}:${password}@${host}:${port}/${databaseName}?authSource=${authDatabase}`;
@@ -20,5 +20,5 @@ function fillObject<T, V>(someDto: ClassConstructor<T>, plainObject: V) {
 export {
   getMongoConnectionString,
   fillEntity,
-  fillObject
+  fillObject,
 }

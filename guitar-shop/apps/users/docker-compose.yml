@@ -3,7 +3,7 @@ services:
   mongodb:
     image: mongo:5.0.14
     restart: always
-    container_name: mongodb_users
+    container_name: guitar_shop_users_mongodb
     ports:
       - '27017:27017'
     volumes:
@@ -20,7 +20,7 @@ services:
   mongodb-express:
     image: mongo-express:1.0.0-alpha.4
     restart: always
-    container_name: mongo-express-notify
+    container_name: guitar_shop_users_mongo-express
     ports:
       - '1085:8081'
     env_file:
