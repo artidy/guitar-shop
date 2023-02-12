@@ -16,7 +16,6 @@ export class GuitarController {
   @ApiResponse({
     status: HttpStatus.OK, description: 'Данные успешно получены'
   })
-  @Auth(UserRole.Admin)
   @Get('/')
   public async index(@User() user: AuthUser) {
     const guitars = await this.guitarService.findAll();
@@ -37,6 +36,7 @@ export class GuitarController {
   @ApiResponse({
     status: HttpStatus.CREATED, description: 'Данные успешно добавлены'
   })
+  @Auth(UserRole.Admin)
   @Post('/')
   public async create(@Body() dto: CreateGuitarDto) {
     const guitar = await this.guitarService.create(dto);
@@ -47,6 +47,7 @@ export class GuitarController {
   @ApiResponse({
     status: HttpStatus.OK, description: 'Данные успешно обновлены'
   })
+  @Auth(UserRole.Admin)
   @Patch('/:id')
   public async update(@Param('id') id: number, @Body() dto: UpdateGuitarDto) {
     const guitar = await this.guitarService.update(id, dto);
@@ -57,6 +58,7 @@ export class GuitarController {
   @ApiResponse({
     status: HttpStatus.NO_CONTENT, description: 'Данные успешно удалены'
   })
+  @Auth(UserRole.Admin)
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   public async delete(@Param('id') id: number) {
