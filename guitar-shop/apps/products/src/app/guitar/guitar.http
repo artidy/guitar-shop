@@ -1,0 +1,3 @@
+### Get all products
+GET http://localhost:4444/api/guitar
+Accept: application/json

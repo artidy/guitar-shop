@@ -5,14 +5,18 @@
 
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { DEFAULT_PORT, GLOBAL_PREFIX } from '@guitar-shop/core';
+import { HttpService } from '@nestjs/axios';
+import { ConfigService } from '@nestjs/config';
+import { DEFAULT_PORT, GLOBAL_PREFIX, auth } from '@guitar-shop/core';
 
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import process from 'process';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const httpService = app.get<HttpService>(HttpService);
+  const configService = app.get<ConfigService>(ConfigService);
+
   app.setGlobalPrefix(GLOBAL_PREFIX);
 
   const config = new DocumentBuilder()
@@ -27,6 +31,8 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({
     transform: true
   }));
+
+  app.use(auth(httpService, configService));
 
   const port = process.env.PORT || DEFAULT_PORT;
   await app.listen(port);

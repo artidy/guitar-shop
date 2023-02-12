@@ -1,6 +1,7 @@
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
-import { fillObject } from '@guitar-shop/core';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard, fillObject, User } from '@guitar-shop/core';
+import { AuthUser } from '@guitar-shop/shared-types';
 
 import { GuitarService } from './guitar.service';
 import { GuitarRdo } from './rdo/guitar.rdo';
@@ -16,7 +17,7 @@ export class GuitarController {
     status: HttpStatus.OK, description: 'Данные успешно получены'
   })
   @Get('/')
-  public async index() {
+  public async index(@User() user: AuthUser) {
     const guitars = await this.guitarService.findAll();
 
     return fillObject(GuitarRdo, guitars);

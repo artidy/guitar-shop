@@ -44,7 +44,7 @@ export class AuthService {
     }
 
     return {
-      access_token: await this.jwtService.signAsync(payload),
+      access_token: await this.jwtService.signAsync(payload, { }),
     };
   }
 
@@ -98,5 +98,9 @@ export class AuthService {
 
   public async getUserById(id: string) {
     return this.authUserRepository.findById(id);
+  }
+
+  public async getUserByEmail(email: string) {
+    return this.authUserRepository.findByEmail(email);
   }
 }

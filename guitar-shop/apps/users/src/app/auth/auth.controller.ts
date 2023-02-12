@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { fillObject } from '@guitar-shop/core';
+import { fillObject, User } from '@guitar-shop/core';
 import { MongoidValidationPipe } from '@guitar-shop/core';
+import { UserRequest } from '@guitar-shop/shared-types';
 
 import { AuthService } from './auth.service';
 import { LoginUserDto } from './dto/login-user.dto';
@@ -16,6 +17,18 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 export class AuthController {
 
   constructor(private readonly authService: AuthService) {}
+
+  @ApiResponse({
+    status: HttpStatus.OK, description: 'Вы успешно получили данные'
+  })
+  @UseGuards(JwtAuthGuard)
+  @Get()
+  @HttpCode(HttpStatus.OK)
+  public async checkAuth(@User() userRequest: UserRequest) {
+    const user = await this.authService.getUserByEmail(userRequest.email)
+
+    return fillObject(UserRdo, user);
+  }
 
   @ApiResponse({
     status: HttpStatus.OK, description: 'Вы успешно получили данные'

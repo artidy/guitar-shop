@@ -8,7 +8,6 @@ import { ENV_FILE_PATH } from './app.constant';
 import { validateEnvironments } from './env.validation';
 import { jwtConfig } from '../config/jwt.config';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({

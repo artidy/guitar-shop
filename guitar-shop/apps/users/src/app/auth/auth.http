@@ -1,0 +1,23 @@
+### Create account
+POST http://localhost:3333/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "ap@guitar.shop",
+  "name": "Andrey",
+  "password": "123456"
+}
+
+### Login
+POST http://localhost:3333/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ap@guitar.shop",
+  "password": "123456"
+}
+
+### Check Auth
+GET http://localhost:3333/api/auth
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2U4NzJiYTRjMDc4OTBlODAxMmE1MTUiLCJlbWFpbCI6ImFwQGd1aXRhci5zaG9wIiwicm9sZSI6ImFkbWluIiwibmFtZSI6IkFuZHJleSIsImlhdCI6MTY3NjE4MDMxNCwiZXhwIjoxNjc2MjY2NzE0fQ.Sl_6MdaGcBwPyn8flaKecdqnqpoy7rwzZavmHFPYEBE
