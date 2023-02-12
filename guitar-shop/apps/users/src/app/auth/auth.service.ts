@@ -103,4 +103,8 @@ export class AuthService {
   public async getUserByEmail(email: string) {
     return this.authUserRepository.findByEmail(email);
   }
+
+  public async getAll() {
+    return this.authUserRepository.getAll();
+  }
 }

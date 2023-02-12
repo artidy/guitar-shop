@@ -33,6 +33,17 @@ export class AuthController {
   @ApiResponse({
     status: HttpStatus.OK, description: 'Вы успешно получили данные'
   })
+  @Get('all')
+  @HttpCode(HttpStatus.OK)
+  public async index() {
+    const users = await this.authService.getAll();
+
+    return fillObject(UserRdo, users);
+  }
+
+  @ApiResponse({
+    status: HttpStatus.OK, description: 'Вы успешно получили данные'
+  })
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   public async getUserById(@Param('id', MongoidValidationPipe) id: string) {
