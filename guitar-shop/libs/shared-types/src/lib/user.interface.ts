@@ -8,6 +8,18 @@ interface User {
   passwordHash: string;
 }
 
+interface UserRequest {
+  email: string;
+  role: UserRole;
+}
+
+interface AuthUser {
+  id: string;
+  email: string;
+  name: string;
+  role: UserRole;
+}
+
 class InitialUser implements User {
   email: '';
   name: '';
@@ -17,5 +29,7 @@ class InitialUser implements User {
 
 export {
   User,
+  UserRequest,
+  AuthUser,
   InitialUser
 }

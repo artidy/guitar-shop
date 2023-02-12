@@ -1,6 +1,7 @@
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
-import { fillObject } from '@guitar-shop/core';
+import { Auth, fillObject, User } from '@guitar-shop/core';
+import { AuthUser, UserRole } from '@guitar-shop/shared-types';
 
 import { GuitarService } from './guitar.service';
 import { GuitarRdo } from './rdo/guitar.rdo';
@@ -16,7 +17,7 @@ export class GuitarController {
     status: HttpStatus.OK, description: 'Данные успешно получены'
   })
   @Get('/')
-  public async index() {
+  public async index(@User() user: AuthUser) {
     const guitars = await this.guitarService.findAll();
 
     return fillObject(GuitarRdo, guitars);
@@ -35,6 +36,7 @@ export class GuitarController {
   @ApiResponse({
     status: HttpStatus.CREATED, description: 'Данные успешно добавлены'
   })
+  @Auth(UserRole.Admin)
   @Post('/')
   public async create(@Body() dto: CreateGuitarDto) {
     const guitar = await this.guitarService.create(dto);
@@ -45,6 +47,7 @@ export class GuitarController {
   @ApiResponse({
     status: HttpStatus.OK, description: 'Данные успешно обновлены'
   })
+  @Auth(UserRole.Admin)
   @Patch('/:id')
   public async update(@Param('id') id: number, @Body() dto: UpdateGuitarDto) {
     const guitar = await this.guitarService.update(id, dto);
@@ -55,6 +58,7 @@ export class GuitarController {
   @ApiResponse({
     status: HttpStatus.NO_CONTENT, description: 'Данные успешно удалены'
   })
+  @Auth(UserRole.Admin)
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   public async delete(@Param('id') id: number) {
