@@ -8,6 +8,7 @@ enum EnvValidationMessage {
   JWTSecretNotRequired = 'JWT secret is not required',
   PgAdminEmailNotRequired = 'PG admin email is not required',
   PgAdminServerModeNotRequired = 'PG admin server mode is not required',
+  URLServiceNotRequired = 'URL service is not required',
 }
 
 enum MongoOptionFields {
