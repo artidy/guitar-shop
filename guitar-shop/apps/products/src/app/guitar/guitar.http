@@ -1,3 +1,4 @@
 ### Get all products
 GET http://localhost:4444/api/guitar
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2U4NzJiYTRjMDc4OTBlODAxMmE1MTUiLCJlbWFpbCI6ImFwQGd1aXRhci5zaG9wIiwicm9sZSI6ImFkbWluIiwibmFtZSI6IkFuZHJleSIsImlhdCI6MTY3NjE4MDMxNCwiZXhwIjoxNjc2MjY2NzE0fQ.Sl_6MdaGcBwPyn8flaKecdqnqpoy7rwzZavmHFPYEBE

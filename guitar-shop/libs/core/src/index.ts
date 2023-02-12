@@ -9,3 +9,5 @@ export * from './lib/decorators/user.decorator';
 export * from './lib/middleware/auth.middleware';
 export * from './lib/config/auth.config';
 export * from './lib/guards/auth.guard';
+export * from './lib/guards/admin.guard';
+export * from './lib/decorators/auth.decorator';
