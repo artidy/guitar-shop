@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { fillObject, User } from '@guitar-shop/core';
+import { fillObject, UrlPaths, User } from '@guitar-shop/core';
 import { MongoidValidationPipe } from '@guitar-shop/core';
 import { UserRequest } from '@guitar-shop/shared-types';
 
@@ -12,8 +12,8 @@ import { UserRdo } from './rdo/user.rdo';
 import { LoggedUserRdo } from './rdo/logged-user.rdo';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
-@ApiTags('auth')
-@Controller('auth')
+@ApiTags(UrlPaths.Auth)
+@Controller(UrlPaths.Auth)
 export class AuthController {
 
   constructor(private readonly authService: AuthService) {}

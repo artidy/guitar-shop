@@ -5,6 +5,8 @@ import { bffConfig } from '../config/bff.config';
 import { ENV_FILE_PATH } from './app.constant';
 import { validateEnvironments } from './env.validation';
 import { UsersModule } from './users/users.module';
+import { ProductsModule } from './products/products.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { UsersModule } from './users/users.module';
       validate: validateEnvironments,
     }),
     UsersModule,
-  ],
+    ProductsModule,
+    OrdersModule
+  ]
 })
 export class AppModule {}

@@ -1,12 +1,12 @@
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Body, Controller, HttpCode, HttpStatus, Post, Headers, Get } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, Headers } from '@nestjs/common';
+import { BffPaths } from '@guitar-shop/core';
 
 import { UsersService } from './users.service';
 
-@ApiTags('users')
-@Controller('users')
+@ApiTags(BffPaths.Users)
+@Controller(BffPaths.Users)
 export class UsersController {
-
   constructor(private readonly usersService: UsersService) {}
 
   @ApiResponse({
@@ -25,14 +25,5 @@ export class UsersController {
   @HttpCode(HttpStatus.CREATED)
   public async create(@Body() user, @Headers() headers) {
     return this.usersService.register(user, headers);
-  }
-
-  @ApiResponse({
-    status: HttpStatus.OK, description: 'Успешно получили данные'
-  })
-  @Get()
-  @HttpCode(HttpStatus.OK)
-  public async index(@Headers() headers) {
-    return this.usersService.getAll(headers);
   }
 }

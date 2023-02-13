@@ -5,23 +5,21 @@ import { firstValueFrom } from 'rxjs';
 import { UrlPaths } from '@guitar-shop/core';
 
 @Injectable()
-export class UsersService {
+export class OrdersService {
   private readonly serviceAddress: string;
 
   constructor(
     private readonly httpService: HttpService,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService,
   ) {
-    this.serviceAddress = `this.configService.get<string>('bff.usersUrl')/${UrlPaths.Auth}`;
+    this.serviceAddress = this.configService.get<string>('bff.productsUrl');
   }
 
-  public async register(user, headers) {
-    const path = 'register';
-
+  public async create(order, headers) {
     const { data } = await firstValueFrom(
       this.httpService.post(
-        `${this.serviceAddress}/${path}`,
-        user,
+        `${this.serviceAddress}/${UrlPaths.Order}`,
+        order,
         {headers}
       )
     )
@@ -29,13 +27,10 @@ export class UsersService {
     return data;
   }
 
-  public async login(user, headers) {
-    const path = 'login';
-
+  public async getById(id, headers) {
     const { data } = await firstValueFrom(
-      this.httpService.post(
-        `${this.serviceAddress}/${path}`,
-        user,
+      this.httpService.get(
+        `${this.serviceAddress}/${UrlPaths.Order}/${id}`,
         {headers}
       )
     )
@@ -44,11 +39,20 @@ export class UsersService {
   }
 
   public async getAll(headers) {
-    const path = 'all';
-
     const { data } = await firstValueFrom(
       this.httpService.get(
-        `${this.serviceAddress}/${path}`,
+        `${this.serviceAddress}/${UrlPaths.Order}`,
+        {headers}
+      )
+    )
+
+    return data;
+  }
+
+  public async delete(id, headers) {
+    const { data } = await firstValueFrom(
+      this.httpService.delete(
+        `${this.serviceAddress}/${UrlPaths.Order}/${id}`,
         {headers}
       )
     )

@@ -25,6 +25,20 @@ enum Port {
   Max = 65535
 }
 
+enum UrlPaths {
+  Auth = 'auth',
+  Guitar = 'guitar',
+  Comment = 'comment',
+  Order = 'order'
+}
+
+enum BffPaths {
+  Users = 'users',
+  Products = 'products',
+  Comments = 'comments',
+  Orders = 'orders'
+}
+
 const MONGO_CONFIG_TOKEN = 'mongodb';
 const DEFAULT_PORT = 3333;
 const GLOBAL_PREFIX = 'api';
@@ -33,6 +47,8 @@ export {
   EnvValidationMessage,
   MongoOptionFields,
   Port,
+  UrlPaths,
+  BffPaths,
   MONGO_CONFIG_TOKEN,
   DEFAULT_PORT,
   GLOBAL_PREFIX
