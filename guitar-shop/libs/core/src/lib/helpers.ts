@@ -1,15 +1,22 @@
 import { ClassConstructor, plainToInstance } from 'class-transformer';
+import { MongoConnection } from '@guitar-shop/shared-types';
 import dayjs from 'dayjs';
+import { isObject } from 'class-validator';
 
-function getMongoConnectionString({username, password, host, port, databaseName, authDatabase}): string {
+function getMongoConnectionString({username, password, host, port, databaseName, authDatabase}: MongoConnection): string {
   return `mongodb://${username}:${password}@${host}:${port}/${databaseName}?authSource=${authDatabase}`;
 }
 
-function fillEntity<D, T>(dto: D, entity: T, dateFields: string[] = []): void {
+function fillEntity<D, T>(dto: D, entity: T): void {
+  if (!isObject(dto)) return;
+  if (!isObject(entity)) return;
+
   const keys = Object.keys(dto);
 
   keys.forEach((field) => {
-    entity[field] = dateFields.includes(field) ? dayjs(dto[field]).toDate() : dto[field];
+    const key: keyof object = field as keyof object;
+
+    entity[key] = dto[key];
   });
 }
 

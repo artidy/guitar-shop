@@ -1,24 +1,25 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { ConfigService } from '@nestjs/config';
-
-const AUTH_FIELD_NAME = 'user';
+import { ExtendedRequest } from '@guitar-shop/shared-types';
 
 export function auth (httpService: HttpService, configService: ConfigService) {
-  return async function (req: Request, res: Response, next: NextFunction)
+  return async function (req: ExtendedRequest, res: Response, next: NextFunction)
   {
-    delete req[AUTH_FIELD_NAME];
+    if (req.user) {
+      req.user = undefined;
+    }
 
     try {
       const {data: user} = await firstValueFrom(
         httpService.get(
-          configService.get<string>('auth.url'),
+          configService.get<string>('auth.url') ?? '',
           {headers: req.headers}
         )
       )
 
-      req[AUTH_FIELD_NAME] = user;
+      req.user = user;
     } catch {}
 
     next();

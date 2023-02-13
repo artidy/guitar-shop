@@ -1,4 +1,5 @@
 import { UserRole } from '@guitar-shop/shared-types';
+import { Request } from 'express';
 
 interface LoginUser {
   email: string;
@@ -30,6 +31,10 @@ interface UserRequest {
   role: UserRole;
 }
 
+interface ExtendedRequest extends Request {
+  user: UserRequest | undefined;
+}
+
 interface AuthUser {
   id: string;
   email: string;
@@ -38,10 +43,17 @@ interface AuthUser {
 }
 
 class InitialUser implements User {
-  email: '';
-  name: '';
-  passwordHash: '';
-  role: UserRole.User;
+  email;
+  name;
+  passwordHash;
+  role;
+
+  constructor() {
+    this.email = '';
+    this.name = '';
+    this.passwordHash = '';
+    this.role = UserRole.User;
+  }
 }
 
 export {
@@ -50,6 +62,7 @@ export {
   LoggedUser,
   NewUser,
   UserRequest,
+  ExtendedRequest,
   AuthUser,
   InitialUser
 }

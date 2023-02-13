@@ -11,12 +11,11 @@
       "options": {
         "compiler": "babel",
         "outputPath": "dist/apps/frontend",
-        "index": "apps/frontend/src/index.html",
+        "index": "apps/frontend/public/index.html",
         "baseHref": "/",
-        "main": "apps/frontend/src/main.tsx",
+        "main": "apps/frontend/src/index.tsx",
         "tsConfig": "apps/frontend/tsconfig.app.json",
-        "assets": ["apps/frontend/src/favicon.ico", "apps/frontend/src/assets"],
-        "styles": ["apps/frontend/src/styles.css"],
+        "assets": ["apps/frontend/src/assets"],
         "scripts": [],
         "webpackConfig": "apps/frontend/webpack.config.js"
       },

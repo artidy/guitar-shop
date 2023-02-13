@@ -30,7 +30,7 @@ export class AuthUserEntity implements User {
     return compare(password, this.passwordHash);
   }
 
-  public fillEntity(user: User) {
+  public fillEntity(user: User): void {
     this._id = user._id;
     this.email = user.email;
     this.name = user.name;

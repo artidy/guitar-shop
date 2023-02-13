@@ -41,6 +41,7 @@ enum BffPaths {
 
 const MONGO_CONFIG_TOKEN = 'mongodb';
 const DEFAULT_PORT = 3333;
+const DEFAULT_MONGO_PORT = '27017';
 const GLOBAL_PREFIX = 'api';
 
 export {
@@ -51,5 +52,6 @@ export {
   BffPaths,
   MONGO_CONFIG_TOKEN,
   DEFAULT_PORT,
+  DEFAULT_MONGO_PORT,
   GLOBAL_PREFIX
 }
