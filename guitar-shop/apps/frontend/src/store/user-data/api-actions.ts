@@ -1,19 +1,12 @@
-import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { BffPaths } from '@guitar-shop/core';
-import { AuthUser, LoggedUser, LoginUser } from '@guitar-shop/shared-types';
+import { AuthUser, LoggedUser, LoginUser, NewUser } from '@guitar-shop/shared-types';
 
-import { AppDispatch, State } from '../types/state';
-import { AuthorizationStatus, NameSpace } from '../conts';
-import { dropToken, saveToken } from '../services/token';
-import { setAuthorizationStatus, setUser } from './user-data/user-data';
-
-type AsyncThunkConfig = {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-};
+import { AuthorizationStatus, NameSpace } from '../../conts';
+import { dropToken, saveToken } from '../../services/token';
+import { setAuthorizationStatus, setUser } from './user-data';
+import { AsyncThunkConfig } from '../../types/thunk-config';
 
 export const checkAuth = createAsyncThunk<void, undefined, AsyncThunkConfig>(
   `${NameSpace.User}/checkAuth`,
@@ -39,6 +32,18 @@ export const login = createAsyncThunk<void, LoginUser, AsyncThunkConfig>(
       dispatch(checkAuth());
     } catch {
       toast.error('Can\'t login');
+    }
+  }
+);
+
+export const registerUser = createAsyncThunk<void, NewUser, AsyncThunkConfig>(
+  `${NameSpace.User}/register`,
+  async (userData, { extra: api }) => {
+
+    try {
+      await api.post<AuthUser>(`${BffPaths.Users}/register`, userData);
+    } catch {
+      throw new Error('Can\'t sign up');
     }
   }
 );

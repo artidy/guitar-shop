@@ -11,6 +11,12 @@ interface LoggedUser {
   accessToken: string;
 }
 
+interface NewUser {
+  email: string;
+  name: string;
+  password: string;
+}
+
 interface User {
   _id?: string;
   email: string;
@@ -42,6 +48,7 @@ export {
   User,
   LoginUser,
   LoggedUser,
+  NewUser,
   UserRequest,
   AuthUser,
   InitialUser

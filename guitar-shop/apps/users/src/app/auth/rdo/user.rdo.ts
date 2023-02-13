@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 import { AuthUser, UserRole } from '@guitar-shop/shared-types';
 
-export class UserRdo implements AuthUser{
+export class UserRdo implements AuthUser {
   @ApiProperty({
     description: 'Уникальный идентификатор пользоателя',
     example: '1'
