@@ -52,6 +52,7 @@ export const {
   addNewProduct,
   setLoading,
   setProduct,
+  deleteProduct,
   setCurrentProduct,
   setComments,
   addComment

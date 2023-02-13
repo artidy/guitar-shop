@@ -26,6 +26,10 @@ export class GuitarRepository implements CRUDRepository<GuitarEntity, number, Pr
     return this.prisma.product.findFirst({ where: { id } });
   }
 
+  public async findByIds(ids: number[]): Promise<Product[]> {
+    return this.prisma.product.findMany({ where: { id: { in: ids } } });
+  }
+
   public async findAll(): Promise<Product[]> {
     return this.prisma.product.findMany();
   }

@@ -1,16 +1,20 @@
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
-import { Auth, fillObject, UrlPaths } from '@guitar-shop/core';
-import { UserRole } from '@guitar-shop/shared-types';
+import { Auth, fillObject, UrlPaths, User } from '@guitar-shop/core';
+import { AuthUser, OrderList, UserRole } from '@guitar-shop/shared-types';
 
 import { OrderService } from './order.service';
 import { OrderRdo } from './rdo/order.rdo';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { GuitarService } from '../guitar/guitar.service';
 
 @ApiTags(UrlPaths.Order)
 @Controller(UrlPaths.Order)
 export class OrderController {
-  constructor(private readonly orderService: OrderService) {}
+  constructor(
+    private readonly orderService: OrderService,
+    private readonly guitarService: GuitarService
+  ) {}
 
   @ApiResponse({
     status: HttpStatus.OK, description: 'Данные успешно получены'
@@ -39,8 +43,21 @@ export class OrderController {
   })
   @Auth()
   @Post('/')
-  public async create(@Body() dto: CreateOrderDto) {
-    const order = await this.orderService.create(dto);
+  public async create(@Body() dto: CreateOrderDto[], @User() user: AuthUser) {
+    const productsIds = dto.map((element) => element.productId);
+    const products = await this.guitarService.findByIds(productsIds);
+
+    const orderList: OrderList[] = dto.map((element) => {
+      const currentProduct = products.find((product) => product.id === element.productId);
+
+      return {
+        productId: element.productId,
+        price: currentProduct.price,
+        count: element.count,
+        sum: currentProduct.price * element.count
+      }
+    })
+    const order = await this.orderService.create(orderList, user.id);
 
     return fillObject(OrderRdo, order);
   }
@@ -51,7 +68,7 @@ export class OrderController {
   @Auth(UserRole.Admin)
   @Patch('/:id')
   public async update(@Param('id') id: number, @Body() dto: CreateOrderDto) {
-    const order = await this.orderService.update(id, dto);
+    const order = await this.orderService.update(id, [], '');
 
     return fillObject(OrderRdo, order);
   }

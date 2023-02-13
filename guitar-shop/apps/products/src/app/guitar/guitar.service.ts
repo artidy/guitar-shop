@@ -33,6 +33,10 @@ export class GuitarService {
     return this.guitarRepository.findById(id);
   }
 
+  public async findByIds(ids: number[]): Promise<Product[]> {
+    return this.guitarRepository.findByIds(ids);
+  }
+
   public async findAll(): Promise<Product[]> {
     return this.guitarRepository.findAll();
   }

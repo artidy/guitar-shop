@@ -7,7 +7,7 @@ import { NameSpace } from '../../conts';
 import { AsyncThunkConfig } from '../../types/thunk-config';
 import {
   addComment,
-  addNewProduct,
+  addNewProduct, deleteProduct,
   setComments,
   setCurrentProduct,
   setLoading,
@@ -78,7 +78,7 @@ export const editProduct = createAsyncThunk<void, UpdateProduct, AsyncThunkConfi
   }
 );
 
-export const deleteProduct = createAsyncThunk<void, number, AsyncThunkConfig>(
+export const deleteProductApi = createAsyncThunk<void, number, AsyncThunkConfig>(
   `${NameSpace.Products}/deleteProduct`,
   async (id, { dispatch, extra: api }) => {
     try {

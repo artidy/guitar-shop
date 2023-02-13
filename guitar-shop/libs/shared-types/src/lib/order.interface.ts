@@ -14,3 +14,8 @@ export interface OrderList {
   sum: number;
   createdAt?: Date;
 }
+
+export interface CreateOrderProduct {
+  productId: number;
+  count: number;
+}

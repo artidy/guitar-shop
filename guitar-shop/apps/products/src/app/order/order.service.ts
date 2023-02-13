@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Order } from '@guitar-shop/shared-types';
+import { Order, OrderList } from '@guitar-shop/shared-types';
 
 import { OrderEntity } from './order.entity';
 import { OrderRepository } from './order.repository';
@@ -11,15 +11,17 @@ export class OrderService {
     private readonly orderRepository: OrderRepository
   ) {}
 
-  public async create(dto: CreateOrderDto): Promise<Order> {
+  public async create(orderList: OrderList[], userId: string): Promise<Order> {
     return this.orderRepository.create(new OrderEntity({
-      ...dto
+      userId,
+      orderList
     }));
   }
 
-  public async update(id: number, dto: CreateOrderDto): Promise<Order | null> {
+  public async update(id: number, orderList: OrderList[], userId: string): Promise<Order | null> {
     return this.orderRepository.update(id, new OrderEntity({
-      ...dto
+      userId,
+      orderList
     }));
   }
 

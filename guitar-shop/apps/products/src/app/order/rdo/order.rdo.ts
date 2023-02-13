@@ -1,8 +1,9 @@
 import { Expose } from 'class-transformer';
+import { Order, OrderList } from '@guitar-shop/shared-types';
 
-class OrderList {
+class OrderListRdo implements OrderList {
   @Expose()
-  public id: string;
+  public id: number;
 
   @Expose()
   public productId: number;
@@ -20,9 +21,9 @@ class OrderList {
   public createdAt: Date;
 }
 
-export class OrderRdo {
+export class OrderRdo implements Order {
   @Expose()
-  public id: string;
+  public id: number;
 
   @Expose()
   public userId: string;
@@ -31,5 +32,5 @@ export class OrderRdo {
   public createdAt: Date;
 
   @Expose()
-  public orderList: OrderList[];
+  public orderList: OrderListRdo[];
 }
