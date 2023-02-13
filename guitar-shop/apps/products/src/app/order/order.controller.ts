@@ -1,14 +1,14 @@
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
-import { Auth, fillObject } from '@guitar-shop/core';
+import { Auth, fillObject, UrlPaths } from '@guitar-shop/core';
+import { UserRole } from '@guitar-shop/shared-types';
 
 import { OrderService } from './order.service';
 import { OrderRdo } from './rdo/order.rdo';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { UserRole } from '@guitar-shop/shared-types';
 
-@ApiTags('order')
-@Controller('order')
+@ApiTags(UrlPaths.Order)
+@Controller(UrlPaths.Order)
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 

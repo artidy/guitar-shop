@@ -8,6 +8,7 @@ enum EnvValidationMessage {
   JWTSecretNotRequired = 'JWT secret is not required',
   PgAdminEmailNotRequired = 'PG admin email is not required',
   PgAdminServerModeNotRequired = 'PG admin server mode is not required',
+  URLServiceNotRequired = 'URL service is not required',
 }
 
 enum MongoOptionFields {
@@ -24,6 +25,20 @@ enum Port {
   Max = 65535
 }
 
+enum UrlPaths {
+  Auth = 'auth',
+  Guitar = 'guitar',
+  Comment = 'comment',
+  Order = 'order'
+}
+
+enum BffPaths {
+  Users = 'users',
+  Products = 'products',
+  Comments = 'comments',
+  Orders = 'orders'
+}
+
 const MONGO_CONFIG_TOKEN = 'mongodb';
 const DEFAULT_PORT = 3333;
 const GLOBAL_PREFIX = 'api';
@@ -32,6 +47,8 @@ export {
   EnvValidationMessage,
   MongoOptionFields,
   Port,
+  UrlPaths,
+  BffPaths,
   MONGO_CONFIG_TOKEN,
   DEFAULT_PORT,
   GLOBAL_PREFIX

@@ -38,4 +38,8 @@ export class AuthUserRepository implements CRUDRepository<AuthUserEntity, string
       .findByIdAndUpdate(id, item.toObject(), {new: true})
       .exec();
   }
+
+  public async getAll(): Promise<User[]> {
+    return this.authUserModel.find({});
+  }
 }

@@ -1,6 +1,6 @@
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
-import { Auth, fillObject, User } from '@guitar-shop/core';
+import { Auth, fillObject, UrlPaths, User } from '@guitar-shop/core';
 import { AuthUser, UserRole } from '@guitar-shop/shared-types';
 
 import { GuitarService } from './guitar.service';
@@ -8,8 +8,8 @@ import { GuitarRdo } from './rdo/guitar.rdo';
 import { CreateGuitarDto } from './dto/create-guitar.dto';
 import { UpdateGuitarDto } from './dto/update-guitar.dto';
 
-@ApiTags('guitar')
-@Controller('guitar')
+@ApiTags(UrlPaths.Guitar)
+@Controller(UrlPaths.Guitar)
 export class GuitarController {
   constructor(private readonly guitarService: GuitarService) {}
 

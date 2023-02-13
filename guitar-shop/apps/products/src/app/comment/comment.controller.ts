@@ -1,15 +1,15 @@
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
-import { Auth, fillObject } from '@guitar-shop/core';
+import { Auth, fillObject, UrlPaths } from '@guitar-shop/core';
+import { UserRole } from '@guitar-shop/shared-types';
 
 import { CommentService } from './comment.service';
 import { CommentRdo } from './rdo/comment.rdo';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
-import { UserRole } from '@guitar-shop/shared-types';
 
-@ApiTags('comment')
-@Controller('comment')
+@ApiTags(UrlPaths.Comment)
+@Controller(UrlPaths.Comment)
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
