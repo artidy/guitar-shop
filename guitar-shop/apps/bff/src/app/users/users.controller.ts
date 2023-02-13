@@ -1,5 +1,5 @@
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Body, Controller, HttpCode, HttpStatus, Post, Headers, Get } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, Headers, Get, Param } from '@nestjs/common';
 import { BffPaths } from '@guitar-shop/core';
 import { LoginUser } from '@guitar-shop/shared-types';
 

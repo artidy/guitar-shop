@@ -1,11 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { BffPaths } from '@guitar-shop/core';
-import { Product, UpdateProduct } from '@guitar-shop/shared-types';
+import { CreateComment, Product, ProductComment, UpdateProduct } from '@guitar-shop/shared-types';
 
 import { NameSpace } from '../../conts';
 import { AsyncThunkConfig } from '../../types/thunk-config';
-import { addNewProduct, setCurrentProduct, setLoading, setProduct, setProducts } from './products-data';
+import {
+  addComment,
+  addNewProduct,
+  setComments,
+  setCurrentProduct,
+  setLoading,
+  setProduct,
+  setProducts
+} from './products-data';
 
 export const fetchProducts = createAsyncThunk<void, undefined, AsyncThunkConfig>(
   `${NameSpace.Products}/fetchProducts`,
@@ -27,9 +35,12 @@ export const fetchProduct = createAsyncThunk<void, number, AsyncThunkConfig>(
     dispatch(setLoading(true));
     try {
       const { data } = await api.get<Product>(`${BffPaths.Products}/${id}`);
+      const { data: comments } = await api.get<ProductComment[]>(`${BffPaths.Comments}/${id}`);
       dispatch(setCurrentProduct(data));
+      dispatch(setComments(comments));
     } catch {
       dispatch(setCurrentProduct(null));
+      dispatch(setComments([]));
       toast.error('Can\'t fetch product');
     } finally {
       dispatch(setLoading(false));
@@ -76,6 +87,21 @@ export const deleteProduct = createAsyncThunk<void, number, AsyncThunkConfig>(
       dispatch(deleteProduct(id));
     } catch {
       throw new Error('Can\'t delete product');
+    }
+  }
+);
+
+export const createComment = createAsyncThunk<void, CreateComment, AsyncThunkConfig>(
+  `${NameSpace.Products}/addComment`,
+  async (comment, { dispatch, extra: api }) => {
+    dispatch(setLoading(true));
+    try {
+      const { data } = await api.post<ProductComment>(`${BffPaths.Comments}`, comment);
+      dispatch(addComment(data));
+    } catch {
+      toast.error('Can\'t fetch products');
+    } finally {
+      dispatch(setLoading(false));
     }
   }
 );

@@ -4,8 +4,6 @@ import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import { UrlPaths } from '@guitar-shop/core';
 
-import { UsersService } from '../users/users.service';
-
 @Injectable()
 export class CommentsService {
   private readonly serviceAddress: string;
@@ -13,37 +11,19 @@ export class CommentsService {
   constructor(
     private readonly httpService: HttpService,
     private readonly configService: ConfigService,
-    private readonly usersService: UsersService,
   ) {
     this.serviceAddress = this.configService.get<string>('bff.productsUrl');
   }
 
-  public async getAll(headers) {
-    const users = await this.usersService.getAll(headers);
-
-    const { data: comments } = await firstValueFrom(
+  public async getAll(id: number, headers) {
+    const { data } = await firstValueFrom(
       this.httpService.get(
-        `${this.serviceAddress}/${UrlPaths.Comment}`,
+        `${this.serviceAddress}/${UrlPaths.Comment}/${UrlPaths.Guitar}/${id}`,
         {headers}
       )
     )
 
-    return comments.map((comment) => {
-      const user = users.find((user) => comment.userId === user.id);
-
-      return {
-        id: comment.id,
-        user: {
-          id: user.id,
-          name: user.name,
-        },
-        advantages: comment.advantages,
-        disadvantages: comment.disadvantages,
-        text: comment.text,
-        rating: comment.rating,
-        createdAt: comment.createdAt,
-      }
-    });
+    return data;
   }
 
   public async create(comment, headers) {

@@ -1,7 +1,7 @@
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
-import { Auth, fillObject, UrlPaths } from '@guitar-shop/core';
-import { UserRole } from '@guitar-shop/shared-types';
+import { Auth, fillObject, UrlPaths, User } from '@guitar-shop/core';
+import { AuthUser, UserRole } from '@guitar-shop/shared-types';
 
 import { CommentService } from './comment.service';
 import { CommentRdo } from './rdo/comment.rdo';
@@ -16,9 +16,9 @@ export class CommentController {
   @ApiResponse({
     status: HttpStatus.OK, description: 'Данные успешно получены'
   })
-  @Get('/')
-  public async index() {
-    const comments = await this.commentService.findAll();
+  @Get(`/${UrlPaths.Guitar}/:id`)
+  public async index(@Param('id') id: number) {
+    const comments = await this.commentService.findAll(id);
 
     return fillObject(CommentRdo, comments);
   }
@@ -38,8 +38,8 @@ export class CommentController {
   })
   @Auth()
   @Post('/')
-  public async create(@Body() dto: CreateCommentDto) {
-    const comment = await this.commentService.create(dto);
+  public async create(@Body() dto: CreateCommentDto, @User() user: AuthUser) {
+    const comment = await this.commentService.create(dto, user.id);
 
     return fillObject(CommentRdo, comment);
   }

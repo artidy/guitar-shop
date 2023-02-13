@@ -12,10 +12,11 @@ export class CommentService {
     private readonly commentRepository: CommentRepository
   ) {}
 
-  public async create(dto: CreateCommentDto): Promise<Comment> {
+  public async create(dto: CreateCommentDto, userId: string): Promise<Comment> {
 
     return this.commentRepository.create(new CommentEntity({
       ...dto,
+      userId: userId,
       createdAt: null
     }));
   }
@@ -33,8 +34,8 @@ export class CommentService {
     return this.commentRepository.findById(id);
   }
 
-  public async findAll(): Promise<Comment[]> {
-    return this.commentRepository.findAll();
+  public async findAll(productId: number): Promise<Comment[]> {
+    return this.commentRepository.findAll(productId);
   }
 
   public async delete(id: number): Promise<void> {

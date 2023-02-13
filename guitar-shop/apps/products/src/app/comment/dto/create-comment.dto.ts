@@ -1,15 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsMongoId, IsNumber, Length, Max, Min } from 'class-validator';
+import { IsNumber, Length, Max, Min } from 'class-validator';
+import { CreateComment } from '@guitar-shop/shared-types';
 
-export class CreateCommentDto {
-  @ApiProperty({
-    description: 'Идентификатор пользователя',
-    required: true,
-    example: '236kgshgskHGhjsd12'
-  })
-  @IsMongoId()
-  userId: string;
-
+export class CreateCommentDto implements CreateComment {
   @ApiProperty({
     description: 'Достоинства',
     required: true,

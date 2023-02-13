@@ -1,11 +1,20 @@
 import { Expose } from 'class-transformer';
+import { CommentUser, ProductComment } from '@guitar-shop/shared-types';
 
-export class CommentRdo {
+class CommentUserRdo implements CommentUser {
+  @Expose()
+  id: string;
+
+  @Expose()
+  name: string;
+}
+
+export class CommentRdo implements ProductComment {
   @Expose()
   public id: number;
 
   @Expose()
-  public userId: string;
+  public user: CommentUserRdo;
 
   @Expose()
   public advantages: string;

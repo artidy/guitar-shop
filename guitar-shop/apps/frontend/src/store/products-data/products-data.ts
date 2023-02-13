@@ -6,6 +6,7 @@ import { NameSpace } from '../../conts';
 const initialState: ProductsState = {
   products: [],
   currentProduct: null,
+  comments: [],
   isLoading: false,
 };
 
@@ -37,7 +38,21 @@ export const productsData = createSlice({
     setCurrentProduct: (state, action) => {
       state.currentProduct = action.payload;
     },
+    setComments: (state, action) => {
+      state.comments = action.payload;
+    },
+    addComment: (state, action) => {
+      state.comments.push(action.payload);
+    },
   },
 });
 
-export const { setProducts, addNewProduct, setLoading, setProduct, setCurrentProduct } = productsData.actions;
+export const {
+  setProducts,
+  addNewProduct,
+  setLoading,
+  setProduct,
+  setCurrentProduct,
+  setComments,
+  addComment
+} = productsData.actions;

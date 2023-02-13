@@ -65,4 +65,15 @@ export class UsersService {
 
     return data;
   }
+
+  public async getById(id, headers) {
+    const { data } = await firstValueFrom(
+      this.httpService.get(
+        `${this.serviceAddress}/${id}`,
+        {headers}
+      )
+    )
+
+    return data;
+  }
 }

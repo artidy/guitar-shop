@@ -23,8 +23,8 @@ export class CommentRepository implements CRUDRepository<CommentEntity, number, 
     return this.prisma.comment.findFirst({ where: { id } });
   }
 
-  public async findAll(): Promise<Comment[]> {
-    return this.prisma.comment.findMany();
+  public async findAll(productId: number): Promise<Comment[]> {
+    return this.prisma.comment.findMany({ where: { productId } });
   }
 
   public async update(id: number, commentEntity: CommentEntity): Promise<Comment> {
