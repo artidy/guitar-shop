@@ -1,5 +1,16 @@
 import { UserRole } from '@guitar-shop/shared-types';
 
+interface LoginUser {
+  email: string;
+  password: string;
+}
+
+interface LoggedUser {
+  id: string;
+  email: string;
+  accessToken: string;
+}
+
 interface User {
   _id?: string;
   email: string;
@@ -29,6 +40,8 @@ class InitialUser implements User {
 
 export {
   User,
+  LoginUser,
+  LoggedUser,
   UserRequest,
   AuthUser,
   InitialUser

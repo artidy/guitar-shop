@@ -1,6 +1,7 @@
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Body, Controller, HttpCode, HttpStatus, Post, Headers } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, Headers, Get } from '@nestjs/common';
 import { BffPaths } from '@guitar-shop/core';
+import { LoginUser } from '@guitar-shop/shared-types';
 
 import { UsersService } from './users.service';
 
@@ -10,11 +11,20 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @ApiResponse({
+    status: HttpStatus.OK, description: 'Вы успешно получили данные'
+  })
+  @Get()
+  @HttpCode(HttpStatus.OK)
+  public async checkAuth(@Headers() headers) {
+    return this.usersService.checkAuth(headers);
+  }
+
+  @ApiResponse({
     status: HttpStatus.OK, description: 'Вы успешно авторизовались'
   })
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  public async login(@Body() user, @Headers() headers) {
+  public async login(@Body() user: LoginUser, @Headers() headers) {
     return this.usersService.login(user, headers);
   }
 

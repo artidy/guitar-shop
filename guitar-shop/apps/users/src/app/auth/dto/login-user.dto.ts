@@ -1,9 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString } from 'class-validator';
+import { LoginUser } from '@guitar-shop/shared-types';
 
 import { EMAIL_FORMAT_NOT_VALID } from '../../app.constant';
 
-export class LoginUserDto {
+export class LoginUserDto implements LoginUser {
   @ApiProperty({
     description: 'Уникальный email пользователя',
     required: true,

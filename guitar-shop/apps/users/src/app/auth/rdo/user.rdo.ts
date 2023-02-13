@@ -1,9 +1,9 @@
 import { Expose, Transform } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 
-import { UserRole } from '@guitar-shop/shared-types';
+import { AuthUser, UserRole } from '@guitar-shop/shared-types';
 
-export class UserRdo {
+export class UserRdo implements AuthUser{
   @ApiProperty({
     description: 'Уникальный идентификатор пользоателя',
     example: '1'

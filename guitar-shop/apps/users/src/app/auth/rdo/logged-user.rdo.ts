@@ -1,7 +1,8 @@
 import { Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
+import { LoggedUser } from '@guitar-shop/shared-types';
 
-export class LoggedUserRdo {
+export class LoggedUserRdo implements LoggedUser {
   @ApiProperty({
     description: 'Уникальный идентификатор пользоателя',
     example: '1'

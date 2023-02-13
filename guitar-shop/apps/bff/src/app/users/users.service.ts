@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import { UrlPaths } from '@guitar-shop/core';
+import { LoginUser } from '@guitar-shop/shared-types';
 
 @Injectable()
 export class UsersService {
@@ -10,9 +10,19 @@ export class UsersService {
 
   constructor(
     private readonly httpService: HttpService,
-    private readonly configService: ConfigService
   ) {
     this.serviceAddress = `this.configService.get<string>('bff.usersUrl')/${UrlPaths.Auth}`;
+  }
+
+  public async checkAuth(headers) {
+    const { data } = await firstValueFrom(
+      this.httpService.get(
+        `${this.serviceAddress}`,
+        {headers}
+      )
+    )
+
+    return data;
   }
 
   public async register(user, headers) {
@@ -29,7 +39,7 @@ export class UsersService {
     return data;
   }
 
-  public async login(user, headers) {
+  public async login(user: LoginUser, headers) {
     const path = 'login';
 
     const { data } = await firstValueFrom(
