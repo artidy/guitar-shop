@@ -1,8 +1,9 @@
 import { Expose } from 'class-transformer';
+import { Product } from '@guitar-shop/shared-types';
 
-export class GuitarRdo {
+export class GuitarRdo implements Product {
   @Expose()
-  public id: string;
+  public id: number;
 
   @Expose()
   public title: string;

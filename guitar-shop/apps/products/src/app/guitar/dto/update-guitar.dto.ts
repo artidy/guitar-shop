@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsIn, IsOptional, IsString, Length, Max, Min } from 'class-validator';
-import { GuitarType } from '@guitar-shop/shared-types';
+import { IsEnum, IsIn, IsOptional, Length, Max, Min } from 'class-validator';
+import { GuitarType, UpdateProduct } from '@guitar-shop/shared-types';
 
 import { GUITAR_STRINGS, Price } from '../../app.constant';
 
-export class UpdateGuitarDto {
+export class UpdateGuitarDto implements UpdateProduct {
   @ApiProperty({
     description: 'Наименование товара',
     required: false,
@@ -22,15 +22,6 @@ export class UpdateGuitarDto {
   @IsOptional()
   @Length(20, 1024)
   description?: string;
-
-  @ApiProperty({
-    description: 'Изображение товара',
-    required: false,
-    example: 'example.png'
-  })
-  @IsOptional()
-  @IsString()
-  previewPath?: string;
 
   @ApiProperty({
     description: 'Тип гитары',

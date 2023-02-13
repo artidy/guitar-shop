@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsIn, IsString, Length, Max, Min, } from 'class-validator';
-import { GuitarType } from '@guitar-shop/shared-types';
+import { GuitarType, Product } from '@guitar-shop/shared-types';
 
 import { GUITAR_STRINGS, Price } from '../../app.constant';
 
-export class CreateGuitarDto {
+export class CreateGuitarDto implements Product {
   @ApiProperty({
     description: 'Наименование товара',
     required: true,

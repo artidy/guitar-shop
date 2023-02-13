@@ -6,6 +6,7 @@ enum AuthorizationStatus {
 
 enum NameSpace {
   User = 'USER',
+  Products = 'PRODUCTS',
 }
 
 const DEFAULT_REQUEST_TIMEOUT = 5000;
