@@ -10,12 +10,22 @@ enum NameSpace {
   Orders = 'ORDERS',
 }
 
+enum AppRoute {
+  Main = '/',
+  Login = '/login',
+  Product = '/product',
+  Register = '/register',
+  Cart = '/cart',
+  Orders = '/orders',
+}
+
 const DEFAULT_REQUEST_TIMEOUT = 5000;
 const TOKEN = 'gs-token';
 
 export {
   AuthorizationStatus,
   NameSpace,
+  AppRoute,
   DEFAULT_REQUEST_TIMEOUT,
   TOKEN
 }
