@@ -1,8 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { User } from '@guitar-shop/shared-types';
 
 import { State, UserState } from '../../types/state';
 import { AuthorizationStatus, NameSpace } from '../../conts';
+import { UserRole } from '../../types/user';
 
 export const getAuthorizationStatus = createSelector(
   (state: State) => state[NameSpace.User],
@@ -26,7 +26,7 @@ export const getIsUnknown = createSelector(
     authorizationStatus === AuthorizationStatus.Unknown
 );
 
-export const getIsAuthor = createSelector(
-  [getUser, (_, commentUser: User | undefined) => commentUser],
-  (user, commentUser) => user && commentUser && user.email === commentUser.email
+export const getIsAdmin = createSelector(
+  (state: State) => state[NameSpace.User],
+  (state: UserState) => state.user?.role === UserRole.Admin
 );

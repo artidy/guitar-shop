@@ -14,6 +14,7 @@ enum AppRoute {
   Main = '/',
   Login = '/login',
   Products = '/products',
+  Edit = '/edit',
   Register = '/register',
   Cart = '/cart',
   Orders = '/orders',

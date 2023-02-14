@@ -15,7 +15,6 @@ export const checkAuth = createAsyncThunk<void, undefined, AsyncThunkConfig>(
       dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
       dispatch(setUser(data));
     } catch {
-      dropToken();
       dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
       dispatch(setUser(null));
     }

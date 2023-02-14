@@ -9,21 +9,22 @@ import 'react-toastify/dist/ReactToastify.css';
 import { store } from './store';
 import App from './components/app/app';
 import { fetchProducts } from './store/products-data/api-actions';
-import { environment } from './environments/environment';
+import { checkAuth } from './store/user-data/api-actions';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+store.dispatch(checkAuth());
 store.dispatch(fetchProducts());
 
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <ToastContainer />
         <App />
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
+  //</React.StrictMode>
 );

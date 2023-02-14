@@ -18,6 +18,7 @@ export const createAPI = () => {
     const token = getToken();
 
     config.headers = config.headers ?? {};
+    config.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate';
 
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
