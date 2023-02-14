@@ -1,8 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsIn, IsOptional, Length, Max, Min } from 'class-validator';
+import { GUITAR_STRINGS } from '@guitar-shop/core';
 import { GuitarType, UpdateProduct } from '@guitar-shop/shared-types';
 
-import { GUITAR_STRINGS, Price } from '../../app.constant';
+import { Price } from '../../app.constant';
 
 export class UpdateGuitarDto implements UpdateProduct {
   @ApiProperty({

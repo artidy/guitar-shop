@@ -15,7 +15,6 @@ enum ProductImageSettings {
 }
 
 const ENV_FILE_PATH = 'environments/.products.env';
-const GUITAR_STRINGS = [4, 6, 7, 12];
 const ARTICLE_LENGTH = 10;
 
 export {
@@ -23,6 +22,5 @@ export {
   Price,
   ProductImageSettings,
   ENV_FILE_PATH,
-  GUITAR_STRINGS,
   ARTICLE_LENGTH,
 }

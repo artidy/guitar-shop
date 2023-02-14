@@ -1,6 +1,5 @@
 import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { MongoConnection } from '@guitar-shop/shared-types';
-import dayjs from 'dayjs';
 import { isObject } from 'class-validator';
 
 function getMongoConnectionString({username, password, host, port, databaseName, authDatabase}: MongoConnection): string {

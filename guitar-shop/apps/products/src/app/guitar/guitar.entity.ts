@@ -1,5 +1,5 @@
 import { Entity } from '@guitar-shop/core';
-import { GuitarType, Product } from '@guitar-shop/shared-types';
+import { Product } from '@guitar-shop/shared-types';
 
 export class GuitarEntity implements Entity<Product>, Product {
   id: number;

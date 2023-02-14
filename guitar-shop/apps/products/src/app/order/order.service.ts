@@ -3,7 +3,6 @@ import { Order, OrderList } from '@guitar-shop/shared-types';
 
 import { OrderEntity } from './order.entity';
 import { OrderRepository } from './order.repository';
-import { CreateOrderDto } from './dto/create-order.dto';
 
 @Injectable()
 export class OrderService {
