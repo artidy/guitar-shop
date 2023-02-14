@@ -17,6 +17,7 @@ enum AppRoute {
   Register = '/register',
   Cart = '/cart',
   Orders = '/orders',
+  NotFound = '*',
 }
 
 const DEFAULT_REQUEST_TIMEOUT = 5000;
