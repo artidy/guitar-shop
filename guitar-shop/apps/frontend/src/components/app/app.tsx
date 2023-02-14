@@ -5,6 +5,7 @@ import LayoutPage from '../../pages/layout-page';
 import MainPage from '../../pages/main-page';
 import NotFoundPage from '../../pages/not-found-page';
 import LoginPage from '../../pages/login-page';
+import RegisterPage from '../../pages/register-page';
 
 function App(): JSX.Element {
   return (
@@ -12,6 +13,7 @@ function App(): JSX.Element {
       <Route path={AppRoute.Main} element={<LayoutPage />}>
         <Route index element={<MainPage />} />
         <Route path={AppRoute.Login} element={<LoginPage />} />
+        <Route path={AppRoute.Register} element={<RegisterPage />} />
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
       </Route>
     </Routes>
