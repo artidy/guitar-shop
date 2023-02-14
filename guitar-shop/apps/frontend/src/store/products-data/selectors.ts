@@ -13,6 +13,11 @@ export const getCurrentProduct = createSelector(
   (state: ProductsState) => state.currentProduct
 );
 
+export const getComments = createSelector(
+  (state: State) => state[NameSpace.Products],
+  (state: ProductsState) => state.comments
+);
+
 export const getIsLoading = createSelector(
   (state: State) => state[NameSpace.Products],
   (state: ProductsState) => state.isLoading

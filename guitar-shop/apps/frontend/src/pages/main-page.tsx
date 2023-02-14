@@ -13,6 +13,7 @@ function MainPage(): JSX.Element {
   const productsBlock = products.map((product) =>
     <ProductCard
       key={product.id}
+      id={product.id ?? 0}
       imgSrc={product.previewPath}
       rating={5}
       rateCount={10}

@@ -13,7 +13,7 @@ enum NameSpace {
 enum AppRoute {
   Main = '/',
   Login = '/login',
-  Product = '/product',
+  Products = '/products',
   Register = '/register',
   Cart = '/cart',
   Orders = '/orders',
@@ -29,6 +29,7 @@ enum BffPaths {
 
 const DEFAULT_REQUEST_TIMEOUT = 5000;
 const TOKEN = 'gs-token';
+const IMAGE_FOLDER = process.env.NX_IMAGE_URL;
 
 export {
   AuthorizationStatus,
@@ -36,5 +37,6 @@ export {
   AppRoute,
   BffPaths,
   DEFAULT_REQUEST_TIMEOUT,
-  TOKEN
+  TOKEN,
+  IMAGE_FOLDER
 }

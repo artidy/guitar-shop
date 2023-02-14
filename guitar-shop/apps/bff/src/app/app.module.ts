@@ -7,6 +7,7 @@ import { validateEnvironments } from './env.validation';
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { OrdersModule } from './orders/orders.module';
     }),
     UsersModule,
     ProductsModule,
-    OrdersModule
+    OrdersModule,
+    CommentsModule
   ]
 })
 export class AppModule {}
