@@ -1,9 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { BffPaths } from '@guitar-shop/core';
-import { CreateComment, Product, ProductComment, UpdateProduct } from '@guitar-shop/shared-types';
 
-import { NameSpace } from '../../conts';
+import { BffPaths, NameSpace } from '../../conts';
 import { AsyncThunkConfig } from '../../types/thunk-config';
 import {
   addComment,
@@ -14,6 +12,8 @@ import {
   setProduct,
   setProducts
 } from './products-data';
+import { Product, UpdateProduct } from '../../types/product';
+import { Comment, CreateComment } from '../../types/comment';
 
 export const fetchProducts = createAsyncThunk<void, undefined, AsyncThunkConfig>(
   `${NameSpace.Products}/fetchProducts`,
@@ -35,7 +35,7 @@ export const fetchProduct = createAsyncThunk<void, number, AsyncThunkConfig>(
     dispatch(setLoading(true));
     try {
       const { data } = await api.get<Product>(`${BffPaths.Products}/${id}`);
-      const { data: comments } = await api.get<ProductComment[]>(`${BffPaths.Comments}/${id}`);
+      const { data: comments } = await api.get<Comment[]>(`${BffPaths.Comments}/${id}`);
       dispatch(setCurrentProduct(data));
       dispatch(setComments(comments));
     } catch {
@@ -96,7 +96,7 @@ export const createComment = createAsyncThunk<void, CreateComment, AsyncThunkCon
   async (comment, { dispatch, extra: api }) => {
     dispatch(setLoading(true));
     try {
-      const { data } = await api.post<ProductComment>(`${BffPaths.Comments}`, comment);
+      const { data } = await api.post<Comment>(`${BffPaths.Comments}`, comment);
       dispatch(addComment(data));
     } catch {
       toast.error('Can\'t fetch products');

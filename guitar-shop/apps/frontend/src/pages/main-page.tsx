@@ -1,8 +1,28 @@
 import { Link } from 'react-router-dom';
+
 import { AppRoute } from '../conts';
 import Filter from '../components/filter/filter';
+import { getProducts } from '../store/products-data/selectors';
+import { useAppSelector } from '../hooks';
+import ProductCard from '../components/product-card/product-card';
+import Pagination from '../components/pagination/pagination';
+import { environment } from '../environments/environment';
 
 function MainPage(): JSX.Element {
+  const products = useAppSelector(getProducts);
+
+  console.log(environment);
+
+  const productsBlock = products.map((product) =>
+    <ProductCard
+      key={product.id}
+      imgSrc={product.previewPath}
+      rating={5}
+      rateCount={10}
+      title={product.title}
+      price={product.price}
+    />);
+
   return (
     <div className="container">
       <h1 className="page-content__title title title--bigger">Каталог гитар</h1>
@@ -16,6 +36,10 @@ function MainPage(): JSX.Element {
       </ul>
       <div className="catalog">
         <Filter />
+        <div className="cards catalog__cards">
+          {productsBlock}
+        </div>
+        <Pagination />
       </div>
     </div>
   );

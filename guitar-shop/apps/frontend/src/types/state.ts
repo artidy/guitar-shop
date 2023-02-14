@@ -1,7 +1,9 @@
-import { Order, Product, ProductComment, User } from '@guitar-shop/shared-types';
-
 import { store } from '../store';
 import { AuthorizationStatus } from '../conts';
+import { Product } from './product';
+import { User } from './user';
+import { Comment } from './comment';
+import { Order } from './order';
 
 export type UserState = {
   authorizationStatus: AuthorizationStatus;
@@ -11,7 +13,7 @@ export type UserState = {
 export type ProductsState = {
   products: Product[],
   currentProduct: Product | null,
-  comments: ProductComment[]
+  comments: Comment[]
   isLoading: boolean,
 }
 

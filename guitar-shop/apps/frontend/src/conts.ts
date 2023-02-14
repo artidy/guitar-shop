@@ -20,6 +20,13 @@ enum AppRoute {
   NotFound = '*',
 }
 
+enum BffPaths {
+  Users = 'users',
+  Products = 'products',
+  Comments = 'comments',
+  Orders = 'orders'
+}
+
 const DEFAULT_REQUEST_TIMEOUT = 5000;
 const TOKEN = 'gs-token';
 
@@ -27,6 +34,7 @@ export {
   AuthorizationStatus,
   NameSpace,
   AppRoute,
+  BffPaths,
   DEFAULT_REQUEST_TIMEOUT,
   TOKEN
 }

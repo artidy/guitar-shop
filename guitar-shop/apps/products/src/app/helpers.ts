@@ -1,8 +1,9 @@
 import { faker } from '@faker-js/faker';
+import { GUITAR_STRINGS } from '@guitar-shop/core';
+import path from 'path';
 
 import {
-  ARTICLE_LENGTH,
-  GUITAR_STRINGS,
+  ARTICLE_LENGTH, ASSETS_DIRECTORY,
   ImageIndex,
   Price,
   ProductImageSettings
@@ -26,6 +27,16 @@ function createRandomProduct() {
   }
 }
 
+const getShortPathDirectory = (filePath: string) => {
+  return path.join(ASSETS_DIRECTORY, filePath);
+}
+
+const getFullPathDirectory = (filePath: string) => {
+  return path.join(__dirname, getShortPathDirectory(filePath));
+}
+
 export {
-  createRandomProduct
+  createRandomProduct,
+  getShortPathDirectory,
+  getFullPathDirectory,
 }

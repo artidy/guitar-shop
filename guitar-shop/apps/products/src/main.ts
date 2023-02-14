@@ -18,6 +18,7 @@ async function bootstrap() {
   const configService = app.get<ConfigService>(ConfigService);
 
   app.setGlobalPrefix(GLOBAL_PREFIX);
+  app.enableCors();
 
   const config = new DocumentBuilder()
     .setTitle('The users service')

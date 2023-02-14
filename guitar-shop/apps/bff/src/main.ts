@@ -14,6 +14,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.setGlobalPrefix(GLOBAL_PREFIX);
+  app.enableCors();
 
   const config = new DocumentBuilder()
     .setTitle('The users service')

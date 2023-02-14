@@ -16,6 +16,7 @@ enum ProductImageSettings {
 
 const ENV_FILE_PATH = 'environments/.products.env';
 const ARTICLE_LENGTH = 10;
+const ASSETS_DIRECTORY = 'assets';
 
 export {
   ImageIndex,
@@ -23,4 +24,5 @@ export {
   ProductImageSettings,
   ENV_FILE_PATH,
   ARTICLE_LENGTH,
+  ASSETS_DIRECTORY,
 }

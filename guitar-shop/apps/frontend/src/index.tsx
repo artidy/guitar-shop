@@ -8,10 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { store } from './store';
 import App from './components/app/app';
+import { fetchProducts } from './store/products-data/api-actions';
+import { environment } from './environments/environment';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+store.dispatch(fetchProducts());
 
 root.render(
   <React.StrictMode>
