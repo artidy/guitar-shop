@@ -15,7 +15,6 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 @ApiTags(UrlPaths.Auth)
 @Controller(UrlPaths.Auth)
 export class AuthController {
-
   constructor(private readonly authService: AuthService) {}
 
   @ApiResponse({

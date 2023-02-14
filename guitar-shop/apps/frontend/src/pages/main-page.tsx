@@ -6,12 +6,9 @@ import { getProducts } from '../store/products-data/selectors';
 import { useAppSelector } from '../hooks';
 import ProductCard from '../components/product-card/product-card';
 import Pagination from '../components/pagination/pagination';
-import { environment } from '../environments/environment';
 
 function MainPage(): JSX.Element {
   const products = useAppSelector(getProducts);
-
-  console.log(environment);
 
   const productsBlock = products.map((product) =>
     <ProductCard

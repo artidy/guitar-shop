@@ -20,7 +20,7 @@ export const createAPI = () => {
     config.headers = config.headers ?? {};
 
     if (token) {
-      config.headers['Authorization'] = `Bearer: ${token}`;
+      config.headers['Authorization'] = `Bearer ${token}`;
     }
 
     return config;
