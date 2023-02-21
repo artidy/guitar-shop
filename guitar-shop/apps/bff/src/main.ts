@@ -4,13 +4,12 @@
  */
 
 import { Logger } from '@nestjs/common';
-import { AbstractHttpAdapter, HttpAdapterHost, NestFactory } from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { DEFAULT_PORT, GLOBAL_PREFIX } from '@guitar-shop/core';
 
 import { AppModule } from './app/app.module';
-import { HttpExceptionFilter } from './exception-filters/all-exception.filter';
-import { ExpressAdapter } from '@nestjs/platform-express';
+import { HttpExceptionFilter } from './exception-filters/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

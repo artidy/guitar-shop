@@ -8,6 +8,10 @@ import { HttpException } from '@nestjs/common';
 export function auth (httpService: HttpService, configService: ConfigService) {
   return async function (req: ExtendedRequest, res: Response, next: NextFunction)
   {
+    if (!req.headers?.Authorization) {
+      return next();
+    }
+
     if (req.user) {
       req.user = undefined;
     }

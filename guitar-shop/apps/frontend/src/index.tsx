@@ -10,18 +10,12 @@ import { store } from './store';
 import App from './components/app/app';
 import { fetchProducts } from './store/products-data/api-actions';
 import { checkAuth } from './store/user-data/api-actions';
-import { getToken } from './services/token';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const token = getToken();
-
-if (token) {
-  store.dispatch(checkAuth());
-}
-
+store.dispatch(checkAuth());
 store.dispatch(fetchProducts());
 
 root.render(

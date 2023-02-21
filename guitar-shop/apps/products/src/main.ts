@@ -32,7 +32,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({
     transform: true
   }));
-
   app.use(auth(httpService, configService));
 
   const port = process.env.PORT || DEFAULT_PORT;

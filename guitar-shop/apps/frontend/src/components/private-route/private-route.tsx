@@ -13,12 +13,12 @@ function PrivateRoute(props: PrivateRouteProps): JSX.Element {
   const isUnknown = useAppSelector(getIsUnknown);
   const isAdmin = useAppSelector(getIsAdmin);
 
-  if (isAdmin) {
-    return children;
-  }
-
   if (isUnknown) {
     return <Navigate to={AppRoute.Products} />;
+  }
+
+  if (isAdmin) {
+    return children;
   }
 
   return <Navigate to={AppRoute.Login} />;
