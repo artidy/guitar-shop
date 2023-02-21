@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import { firstValueFrom } from 'rxjs';
+import { catchError, firstValueFrom } from 'rxjs';
 import { UrlPaths } from '@guitar-shop/core';
 
 @Injectable()
@@ -21,7 +21,9 @@ export class OrdersService {
         `${this.serviceAddress}/${UrlPaths.Order}`,
         order,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;
@@ -32,7 +34,9 @@ export class OrdersService {
       this.httpService.get(
         `${this.serviceAddress}/${UrlPaths.Order}/${id}`,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;
@@ -43,7 +47,9 @@ export class OrdersService {
       this.httpService.get(
         `${this.serviceAddress}/${UrlPaths.Order}`,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;
@@ -54,7 +60,9 @@ export class OrdersService {
       this.httpService.delete(
         `${this.serviceAddress}/${UrlPaths.Order}/${id}`,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;

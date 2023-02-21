@@ -1,15 +1,15 @@
 import { faker } from '@faker-js/faker';
-import { GUITAR_STRINGS } from '@guitar-shop/core';
 import path from 'path';
 
 import {
-  ARTICLE_LENGTH, ASSETS_DIRECTORY,
+  ARTICLE_LENGTH,
+  ASSETS_DIRECTORY,
+  GUITAR_STRINGS,
+  GUITAR_TYPES,
   ImageIndex,
   Price,
   ProductImageSettings
 } from './app.constant';
-
-const GUITAR_TYPES = ['электро', 'аккустика', 'укулеле'];
 
 function createRandomProduct() {
   return {

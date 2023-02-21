@@ -4,16 +4,19 @@
  */
 
 import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import { AbstractHttpAdapter, HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { DEFAULT_PORT, GLOBAL_PREFIX } from '@guitar-shop/core';
 
 import { AppModule } from './app/app.module';
+import { HttpExceptionFilter } from './exception-filters/all-exception.filter';
+import { ExpressAdapter } from '@nestjs/platform-express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.setGlobalPrefix(GLOBAL_PREFIX);
+  app.useGlobalFilters(new HttpExceptionFilter());
   app.enableCors();
 
   const config = new DocumentBuilder()

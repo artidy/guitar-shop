@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { firstValueFrom } from 'rxjs';
+import { catchError, firstValueFrom } from 'rxjs';
 import { UrlPaths } from '@guitar-shop/core';
 import { LoginUser } from '@guitar-shop/shared-types';
 import { ConfigService } from '@nestjs/config';
@@ -21,7 +21,9 @@ export class UsersService {
       this.httpService.get(
         `${this.serviceAddress}`,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;
@@ -35,7 +37,9 @@ export class UsersService {
         `${this.serviceAddress}/${path}`,
         user,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;
@@ -49,7 +53,9 @@ export class UsersService {
         `${this.serviceAddress}/${path}`,
         user,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;
@@ -62,7 +68,9 @@ export class UsersService {
       this.httpService.get(
         `${this.serviceAddress}/${path}`,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;
@@ -73,7 +81,9 @@ export class UsersService {
       this.httpService.get(
         `${this.serviceAddress}/${id}`,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;

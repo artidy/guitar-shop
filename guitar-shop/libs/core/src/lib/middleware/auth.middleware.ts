@@ -1,8 +1,9 @@
 import { Response, NextFunction } from 'express';
 import { HttpService } from '@nestjs/axios';
-import { firstValueFrom } from 'rxjs';
+import { catchError, firstValueFrom } from 'rxjs';
 import { ConfigService } from '@nestjs/config';
 import { ExtendedRequest } from '@guitar-shop/shared-types';
+import { HttpException } from '@nestjs/common';
 
 export function auth (httpService: HttpService, configService: ConfigService) {
   return async function (req: ExtendedRequest, res: Response, next: NextFunction)
@@ -16,7 +17,9 @@ export function auth (httpService: HttpService, configService: ConfigService) {
         httpService.get(
           configService.get<string>('auth.url') ?? '',
           {headers: req.headers}
-        )
+        ).pipe(catchError((e) => {
+          throw new HttpException(e.response.data, e.response.status);
+        }))
       )
 
       req.user = user;

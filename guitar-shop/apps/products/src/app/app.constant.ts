@@ -17,6 +17,8 @@ enum ProductImageSettings {
 const ENV_FILE_PATH = 'environments/.products.env';
 const ARTICLE_LENGTH = 10;
 const ASSETS_DIRECTORY = 'assets';
+const GUITAR_STRINGS = [4, 6, 7, 12];
+const GUITAR_TYPES = ['электро', 'аккустика', 'укулеле'];
 
 export {
   ImageIndex,
@@ -25,4 +27,6 @@ export {
   ENV_FILE_PATH,
   ARTICLE_LENGTH,
   ASSETS_DIRECTORY,
+  GUITAR_STRINGS,
+  GUITAR_TYPES,
 }

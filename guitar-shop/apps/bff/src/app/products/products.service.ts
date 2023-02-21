@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import { firstValueFrom } from 'rxjs';
+import { catchError, firstValueFrom } from 'rxjs';
 import { UrlPaths } from '@guitar-shop/core';
 
 @Injectable()
@@ -20,7 +20,9 @@ export class ProductsService {
       this.httpService.get(
         `${this.serviceAddress}/${UrlPaths.Guitar}`,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;
@@ -31,7 +33,9 @@ export class ProductsService {
       this.httpService.get(
         `${this.serviceAddress}/${UrlPaths.Guitar}/${id}`,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;
@@ -43,7 +47,9 @@ export class ProductsService {
         `${this.serviceAddress}/${UrlPaths.Guitar}`,
         product,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;
@@ -55,7 +61,9 @@ export class ProductsService {
         `${this.serviceAddress}/${UrlPaths.Guitar}/${id}`,
         product,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
 
     return data;
@@ -66,7 +74,9 @@ export class ProductsService {
       this.httpService.delete(
         `${this.serviceAddress}/${UrlPaths.Guitar}/${id}`,
         {headers}
-      )
+      ).pipe(catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }))
     )
   }
 }
