@@ -2,8 +2,12 @@ import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../conts';
 import Logo from '../logo/logo';
+import { useAppSelector } from '../../hooks';
+import { getUser } from '../../store/user-data/selectors';
 
 function Header(): JSX.Element {
+  const user = useAppSelector(getUser);
+
   return (
     <header className="header" id="header">
       <div className="container">
@@ -34,7 +38,7 @@ function Header(): JSX.Element {
               <svg className="header__link-icon" width="12" height="14" aria-hidden="true">
                 <use xlinkHref="#icon-account"></use>
               </svg>
-              <span className="header__link-text">Вход</span>
+              <span className="header__link-text">{ user ? user.name : 'Вход' }</span>
             </Link>
             <Link className="header__cart-link" to={AppRoute.Cart} aria-label="Перейти в корзину">
               <svg className="header__cart-icon" width="14" height="14" aria-hidden="true">

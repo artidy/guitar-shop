@@ -1,0 +1,14 @@
+.spinner {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+svg {
+  height: 100px;
+  width: 100px;
+}
