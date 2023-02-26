@@ -6,6 +6,7 @@ import Pagination from '../components/pagination/pagination';
 import { useAppSelector } from '../hooks';
 import { getProducts } from '../store/products-data/selectors';
 import ProductItem from '../components/product-item/product-item';
+import Sorting from '../components/sorting/sorting';
 
 function ProductsListPage(): JSX.Element {
   const products = useAppSelector(getProducts);
@@ -36,6 +37,7 @@ function ProductsListPage(): JSX.Element {
         </ul>
         <div className="catalog">
           <Filter />
+          <Sorting />
           <div className="catalog-cards">
             <ul className="catalog-cards__list">
               {productsBlock}
