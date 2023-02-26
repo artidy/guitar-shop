@@ -8,7 +8,7 @@
   flex-direction: column;
 }
 
-svg {
+.spinner svg {
   height: 100px;
   width: 100px;
 }

@@ -2,14 +2,20 @@ import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../conts';
 import Filter from '../components/filter/filter';
-import { getProducts } from '../store/products-data/selectors';
+import { getIsLoading, getProducts } from '../store/products-data/selectors';
 import { useAppSelector } from '../hooks';
 import ProductCard from '../components/product-card/product-card';
 import Pagination from '../components/pagination/pagination';
 import ProductCardButtons from '../components/product-card-buttons/product-card-buttons';
+import Spinner from '../components/spinner/spinner';
 
 function MainPage(): JSX.Element {
   const products = useAppSelector(getProducts);
+  const isLoading = useAppSelector(getIsLoading);
+
+  if (isLoading) {
+    return <Spinner />
+  }
 
   const productsBlock = products.map((product) =>
       <ProductCard

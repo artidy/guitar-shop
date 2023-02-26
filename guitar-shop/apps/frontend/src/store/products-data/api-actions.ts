@@ -32,8 +32,8 @@ export const fetchProducts = createAsyncThunk<void, undefined, AsyncThunkConfig>
 export const fetchProduct = createAsyncThunk<void, number, AsyncThunkConfig>(
   `${NameSpace.Products}/fetchProduct`,
   async (id, { dispatch, extra: api }) => {
-    dispatch(setLoading(true));
     try {
+      dispatch(setLoading(true));
       const { data } = await api.get<Product>(`${BffPaths.Products}/${id}`);
       const { data: comments } = await api.get<Comment[]>(`${BffPaths.Comments}/${id}`);
       dispatch(setCurrentProduct(data));

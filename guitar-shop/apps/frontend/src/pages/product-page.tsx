@@ -6,14 +6,16 @@ import Product from '../components/product/product';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { fetchProduct } from '../store/products-data/api-actions';
 import NotFoundPage from './not-found-page';
-import { getComments, getCurrentProduct } from '../store/products-data/selectors';
+import { getComments, getCurrentProduct, getIsLoading } from '../store/products-data/selectors';
 import Comment from '../components/comment/comment';
+import Spinner from '../components/spinner/spinner';
 
 function ProductPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const product = useAppSelector(getCurrentProduct);
-  const comments = useAppSelector(getComments)
+  const comments = useAppSelector(getComments);
+  const isLoading = useAppSelector(getIsLoading);
 
   useEffect(() => {
     if (!id) {
@@ -22,6 +24,10 @@ function ProductPage(): JSX.Element {
 
     dispatch(fetchProduct(+id));
   }, [dispatch, id]);
+
+  if (isLoading) {
+    return <Spinner />
+  }
 
   if (!product) {
     return <NotFoundPage />;
