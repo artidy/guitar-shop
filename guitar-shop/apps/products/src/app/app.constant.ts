@@ -1,3 +1,5 @@
+import { GuitarType } from '@guitar-shop/shared-types';
+
 enum ImageIndex {
   Min = 0,
   Max = 8
@@ -18,7 +20,7 @@ const ENV_FILE_PATH = 'environments/.products.env';
 const ARTICLE_LENGTH = 10;
 const ASSETS_DIRECTORY = 'assets';
 const GUITAR_STRINGS = [4, 6, 7, 12];
-const GUITAR_TYPES = ['электро', 'аккустика', 'укулеле'];
+const GUITAR_TYPES = Object.values(GuitarType);
 
 export {
   ImageIndex,
