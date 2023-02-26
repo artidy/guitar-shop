@@ -1,5 +1,7 @@
 type RatingStarsProps = {
   rating: number;
+  width: string;
+  height: string;
 }
 
 enum RatingStar {
@@ -9,11 +11,11 @@ enum RatingStar {
 
 const RATINGS = [1, 2, 3, 4, 5];
 
-function RatingStars({rating}: RatingStarsProps): JSX.Element {
+function RatingStars({rating, width, height}: RatingStarsProps): JSX.Element {
   const ratingBlock = RATINGS.map((value) => {
     const starIcon = value > rating ? RatingStar.EmptyStar : RatingStar.FullStar;
 
-    return (<svg key={value} width="12" height="11" aria-hidden="true">
+    return (<svg key={value} width={width} height={height} aria-hidden="true">
       <use xlinkHref={starIcon}></use>
     </svg>)
   });

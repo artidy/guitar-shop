@@ -16,6 +16,11 @@ type ProductProps = {
   description: string;
 }
 
+enum RatingStarSizes {
+  Width = '14',
+  Height = '14'
+}
+
 function Product(
   {
     imgSrc,
@@ -60,7 +65,11 @@ function Product(
       <div className="product-container__info-wrapper">
         <h2 className="product-container__title title title--big title--uppercase">{title}</h2>
         <div className="rate product-container__rating">
-          <RatingStars rating={rating} />
+          <RatingStars
+            rating={rating}
+            width={RatingStarSizes.Width}
+            height={RatingStarSizes.Height}
+          />
           <p className="visually-hidden">Рейтинг: Хорошо</p>
           <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{rateCount}</p>
         </div>

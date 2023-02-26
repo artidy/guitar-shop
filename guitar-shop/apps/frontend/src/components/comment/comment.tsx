@@ -10,6 +10,11 @@ type CommentProps = {
   createdAt: Date;
 }
 
+enum RatingStarSizes {
+  Width = '16',
+  Height = '16'
+}
+
 function Comment({user, advantages, disadvantages, text, rating, createdAt }: CommentProps): JSX.Element {
   return (
     <div className="review">
@@ -18,7 +23,11 @@ function Comment({user, advantages, disadvantages, text, rating, createdAt }: Co
         <span className="review__date">{createdAt.toDateString()}</span>
       </div>
       <div className="rate review__rating-panel">
-        <RatingStars rating={rating} />
+        <RatingStars
+          rating={rating}
+          width={RatingStarSizes.Width}
+          height={RatingStarSizes.Height}
+        />
         <p className="visually-hidden">Оценка: Хорошо</p>
       </div>
       <h4 className="review__title title title--lesser">Достоинства:</h4>

@@ -10,13 +10,22 @@ type ProductCardProps = {
   children: JSX.Element;
 }
 
+enum RatingStarSizes {
+  Width = '12',
+  Height = '11'
+}
+
 function ProductCard({imgSrc, rating, rateCount, title, price, children}: ProductCardProps): JSX.Element {
   return (
     <div className="product-card">
       <img src={`${IMAGE_FOLDER}/${imgSrc}`} width="75" height="190" alt={title} />
       <div className="product-card__info">
         <div className="rate product-card__rate">
-          <RatingStars rating={rating} />
+          <RatingStars
+            rating={rating}
+            width={RatingStarSizes.Width}
+            height={RatingStarSizes.Height}
+          />
           <p className="visually-hidden">Рейтинг: Хорошо</p>
           <p className="rate__count">
             <span className="visually-hidden">Всего оценок:</span>

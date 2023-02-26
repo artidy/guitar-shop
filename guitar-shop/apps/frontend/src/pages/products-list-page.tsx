@@ -5,23 +5,21 @@ import Filter from '../components/filter/filter';
 import Pagination from '../components/pagination/pagination';
 import { useAppSelector } from '../hooks';
 import { getProducts } from '../store/products-data/selectors';
-import ProductCard from '../components/product-card/product-card';
-import ProductListButtons from '../components/product-list-buttons/product-list-buttons';
+import ProductItem from '../components/product-item/product-item';
 
 function ProductsListPage(): JSX.Element {
   const products = useAppSelector(getProducts);
 
   const productsBlock = products.map((product) =>
-      <ProductCard
+      <ProductItem
         key={product.id}
+        id={product.id ?? 0}
         imgSrc={product.previewPath}
         rating={5}
-        rateCount={10}
+        createdDate={product.createdAt ?? new Date}
         title={product.title}
         price={product.price}
-      >
-        <ProductListButtons id={product.id ?? 0} />
-      </ProductCard>
+      />
   );
 
   return (
@@ -38,12 +36,14 @@ function ProductsListPage(): JSX.Element {
         </ul>
         <div className="catalog">
           <Filter />
-          <div className="cards catalog__cards">
-            {productsBlock}
+          <div className="catalog-cards">
+            <ul className="catalog-cards__list">
+              {productsBlock}
+            </ul>
           </div>
-          <button className="button product-list__button button--red button--big">Добавить новый товар</button>
-          <Pagination />
         </div>
+        <button className="button product-list__button button--red button--big">Добавить новый товар</button>
+        <Pagination />
       </div>
     </section>
   )
