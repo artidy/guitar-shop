@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 import { AuthorizationStatus, BffPaths, NameSpace } from '../../conts';
-import { dropToken, saveToken } from '../../services/token';
+import { dropToken, getToken, saveToken } from '../../services/token';
 import { setAuthorizationStatus, setUser } from './user-data';
 import { AsyncThunkConfig } from '../../types/thunk-config';
 import { CreateUser, LoggedUser, LoginUser, User } from '../../types/user';
@@ -11,14 +11,21 @@ export const checkAuth = createAsyncThunk<void, undefined, AsyncThunkConfig>(
   `${NameSpace.User}/checkAuth`,
   async (_arg, { dispatch, extra: api }) => {
     try {
-      const { data } = await api.get<User>(BffPaths.Users);
-      dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
-      dispatch(setUser(data));
+      const token = getToken();
+
+      if (token) {
+        const { data } = await api.get<User>(BffPaths.Users);
+        dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+        dispatch(setUser(data));
+
+        return;
+      }
     } catch {
-      dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
-      dispatch(setUser(null));
       dropToken();
     }
+
+    dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
+    dispatch(setUser(null));
   }
 );
 
