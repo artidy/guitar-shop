@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-import { createRandomProduct } from '../../src/app/helpers';
+import { createRandomProduct } from '../helpers';
 
 const START_COUNT = 0;
 const DEFAULT_PRODUCT_COUNT = 10;

@@ -12,5 +12,13 @@
   ],
   "compilerOptions": {
     "esModuleInterop": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "paths": {
+        "@guitar-shop/shared-types": ["../../libs/shared-types/src/index.ts"]
+      }
+    }
   }
 }
