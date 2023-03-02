@@ -6,7 +6,6 @@ import { getIsLoading, getProducts } from '../store/products-data/selectors';
 import { useAppSelector } from '../hooks';
 import ProductCard from '../components/product-card/product-card';
 import Pagination from '../components/pagination/pagination';
-import ProductCardButtons from '../components/product-card-buttons/product-card-buttons';
 import Spinner from '../components/spinner/spinner';
 
 function MainPage(): JSX.Element {
@@ -20,14 +19,13 @@ function MainPage(): JSX.Element {
   const productsBlock = products.map((product) =>
       <ProductCard
         key={product.id}
+        id={product.id ?? 0}
         imgSrc={product.previewPath}
         rating={5}
         rateCount={10}
         title={product.title}
         price={product.price}
-      >
-        <ProductCardButtons id={product.id ?? 0} />
-      </ProductCard>
+      />
   );
 
   return (

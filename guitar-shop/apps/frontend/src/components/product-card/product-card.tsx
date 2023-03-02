@@ -1,13 +1,14 @@
 import RatingStars from '../rating-stars/rating-stars';
-import { IMAGE_FOLDER } from '../../conts';
+import { AppRoute, IMAGE_FOLDER } from '../../conts';
+import { Link } from 'react-router-dom';
 
 type ProductCardProps = {
+  id: number;
   imgSrc: string;
   rating: number;
   rateCount: number;
   title: string;
   price: number;
-  children: JSX.Element;
 }
 
 enum RatingStarSizes {
@@ -15,7 +16,7 @@ enum RatingStarSizes {
   Height = '11'
 }
 
-function ProductCard({imgSrc, rating, rateCount, title, price, children}: ProductCardProps): JSX.Element {
+function ProductCard({id, imgSrc, rating, rateCount, title, price}: ProductCardProps): JSX.Element {
   return (
     <div className="product-card">
       <img src={`${IMAGE_FOLDER}/${imgSrc}`} width="75" height="190" alt={title} />
@@ -38,7 +39,10 @@ function ProductCard({imgSrc, rating, rateCount, title, price, children}: Produc
           {price} ₽
         </p>
       </div>
-      {children}
+      <div className="product-card__buttons">
+        <Link className="button button--mini" to={`${AppRoute.Products}/${id}`}>Подробнее</Link>
+        <Link className="button button--red button--mini button--add-to-cart" to="#">Купить</Link>
+      </div>
     </div>
   )
 }

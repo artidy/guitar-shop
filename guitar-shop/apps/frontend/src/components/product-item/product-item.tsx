@@ -40,7 +40,7 @@ function ProductItem({id, imgSrc, rating, title, price, createdDate}: ProductIte
       <div className="catalog-item__buttons">
         <Link
           className="button button--small button--black-border"
-          to={`${AppRoute.Edit}/${id}`}
+          to={`${AppRoute.EditProduct}/${id}`}
           aria-label="Редактировать товар"
         >
           Редактировать

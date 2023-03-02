@@ -66,12 +66,14 @@ export const createProduct = createAsyncThunk<void, Product, AsyncThunkConfig>(
 export const editProduct = createAsyncThunk<void, UpdateProduct, AsyncThunkConfig>(
   `${NameSpace.Products}/editProduct`,
   async (product, { dispatch, extra: api }) => {
-    dispatch(setLoading(true));
     try {
+      dispatch(setLoading(true));
       const { data } = await api.patch<Product>(`${BffPaths.Products}/${product.id}`, product);
       dispatch(setProduct(data));
+      dispatch(setCurrentProduct(data));
+      toast.success('Edit was successful');
     } catch {
-      toast.error('Can\'t add product');
+      toast.error('Can\'t edit product');
     } finally {
       dispatch(setLoading(false));
     }

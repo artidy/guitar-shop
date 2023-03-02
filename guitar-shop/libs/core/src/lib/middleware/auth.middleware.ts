@@ -8,7 +8,9 @@ import { HttpException } from '@nestjs/common';
 export function auth (httpService: HttpService, configService: ConfigService) {
   return async function (req: ExtendedRequest, res: Response, next: NextFunction)
   {
-    if (!req.headers?.Authorization) {
+    const authorization = req.headers?.authorization ?? req.headers?.Authorization;
+
+    if (!authorization) {
       return next();
     }
 
@@ -16,11 +18,18 @@ export function auth (httpService: HttpService, configService: ConfigService) {
       req.user = undefined;
     }
 
+    const authUrl = configService.get<string>('auth.url') ?? '';
+
     try {
       const {data: user} = await firstValueFrom(
         httpService.get(
-          configService.get<string>('auth.url') ?? '',
-          {headers: req.headers}
+          authUrl,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": authorization
+            }
+          }
         ).pipe(catchError((e) => {
           throw new HttpException(e.response.data, e.response.status);
         }))

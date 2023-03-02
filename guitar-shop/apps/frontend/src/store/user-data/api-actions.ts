@@ -50,7 +50,7 @@ export const registerUser = createAsyncThunk<void, CreateUser, AsyncThunkConfig>
       await api.post<User>(`${BffPaths.Users}/register`, userData);
       toast.success('Sign up is success');
     } catch {
-      throw new Error('Can\'t sign up');
+      toast.error('Can\'t Sign up');
     }
   }
 );

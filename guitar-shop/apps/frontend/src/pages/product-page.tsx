@@ -9,6 +9,7 @@ import NotFoundPage from './not-found-page';
 import { getComments, getCurrentProduct, getIsLoading } from '../store/products-data/selectors';
 import Comment from '../components/comment/comment';
 import Spinner from '../components/spinner/spinner';
+import { setComments, setCurrentProduct } from '../store/products-data/products-data';
 
 function ProductPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -23,6 +24,11 @@ function ProductPage(): JSX.Element {
     }
 
     dispatch(fetchProduct(+id));
+
+    return () => {
+      dispatch(setCurrentProduct(null));
+      dispatch(setComments([]));
+    }
   }, [dispatch, id]);
 
   if (isLoading) {

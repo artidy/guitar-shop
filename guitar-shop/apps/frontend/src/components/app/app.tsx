@@ -9,6 +9,7 @@ import RegisterPage from '../../pages/register-page';
 import ProductPage from '../../pages/product-page';
 import PrivateRoute from '../private-route/private-route';
 import ProductsListPage from '../../pages/products-list-page';
+import EditProductPage from '../../pages/edit-product-page';
 
 function App(): JSX.Element {
   return (
@@ -23,6 +24,14 @@ function App(): JSX.Element {
           element={
             <PrivateRoute>
               <ProductsListPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={`${AppRoute.EditProduct}/:id`}
+          element={
+            <PrivateRoute>
+              <EditProductPage />
             </PrivateRoute>
           }
         />

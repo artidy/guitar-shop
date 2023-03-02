@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
 import { AppRoute } from '../../conts';
@@ -7,7 +7,8 @@ import { useAppSelector } from '../../hooks';
 import { getIsAdmin, getUser } from '../../store/user-data/selectors';
 
 function Header(): JSX.Element {
-  const [currentLink, setCurrentLink] = useState(AppRoute.Main);
+  const location = useLocation();
+  const [currentLink, setCurrentLink] = useState(location.pathname);
   const user = useAppSelector(getUser);
   const isAdmin = useAppSelector(getIsAdmin);
 
