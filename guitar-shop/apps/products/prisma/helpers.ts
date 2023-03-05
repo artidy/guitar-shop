@@ -19,10 +19,14 @@ enum Price {
 const ARTICLE_LENGTH = 10;
 const GUITAR_STRINGS = [4, 6, 7, 12];
 const GUITAR_TYPES = ['электро', 'аккустика', 'укулеле'];
+enum TitleLength {
+  Min = 10,
+  Max = 100
+}
 
 function createRandomProduct() {
   return {
-    title: faker.commerce.product(),
+    title: faker.word.noun({length: {min: TitleLength.Min, max: TitleLength.Max}}),
     description: faker.commerce.productDescription(),
     createdAt: faker.date.past(),
     previewPath: `${ProductImageSettings.DefaultName}-${faker.datatype.number({

@@ -70,7 +70,7 @@ export class ProductsService {
   }
 
   public async delete(id, headers) {
-    return await firstValueFrom(
+    await firstValueFrom(
       this.httpService.delete(
         `${this.serviceAddress}/${UrlPaths.Guitar}/${id}`,
         {headers}

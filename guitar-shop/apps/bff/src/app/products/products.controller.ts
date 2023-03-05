@@ -47,6 +47,6 @@ export class ProductsController {
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   public async delete(@Param('id') id: number, @Headers() headers) {
-    return this.productsService.delete(id, headers);
+    await this.productsService.delete(id, headers);
   }
 }

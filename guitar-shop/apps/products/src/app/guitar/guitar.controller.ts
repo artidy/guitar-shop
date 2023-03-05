@@ -62,6 +62,6 @@ export class GuitarController {
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   public async delete(@Param('id') id: number) {
-    return await this.guitarService.delete(id);
+    await this.guitarService.delete(id);
   }
 }

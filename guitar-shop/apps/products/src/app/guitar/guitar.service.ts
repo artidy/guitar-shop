@@ -42,6 +42,6 @@ export class GuitarService {
   }
 
   public async delete(id: number): Promise<void> {
-    return this.guitarRepository.destroy(id);
+    await this.guitarRepository.destroy(id);
   }
 }

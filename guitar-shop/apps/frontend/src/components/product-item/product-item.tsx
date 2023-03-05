@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { MouseEventHandler } from 'react';
 
 import { AppRoute, IMAGE_FOLDER } from '../../conts';
 import RatingStars from '../rating-stars/rating-stars';
@@ -11,6 +12,7 @@ type ProductItemProps = {
   title: string;
   price: number;
   createdDate: Date;
+  onDeleteHandle: MouseEventHandler;
 }
 
 enum RatingStarSizes {
@@ -18,7 +20,7 @@ enum RatingStarSizes {
   Height = '14'
 }
 
-function ProductItem({id, imgSrc, rating, title, price, createdDate}: ProductItemProps): JSX.Element {
+function ProductItem({id, imgSrc, rating, title, price, createdDate, onDeleteHandle}: ProductItemProps): JSX.Element {
   return (
     <li className="catalog-item">
       <div className="catalog-item__data">
@@ -49,6 +51,7 @@ function ProductItem({id, imgSrc, rating, title, price, createdDate}: ProductIte
           className="button button--small button--black-border"
           type="submit"
           aria-label="Удалить товар"
+          onClick={onDeleteHandle}
         >
           Удалить
         </button>

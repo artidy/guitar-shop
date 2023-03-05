@@ -1,15 +1,26 @@
 import { Link } from 'react-router-dom';
+import { MouseEvent } from 'react';
 
 import { AppRoute } from '../conts';
 import Filter from '../components/filter/filter';
 import Pagination from '../components/pagination/pagination';
-import { useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { getProducts } from '../store/products-data/selectors';
 import ProductItem from '../components/product-item/product-item';
 import Sorting from '../components/sorting/sorting';
+import { deleteProductApi } from '../store/products-data/api-actions';
 
 function ProductsListPage(): JSX.Element {
   const products = useAppSelector(getProducts);
+  const dispatch = useAppDispatch();
+
+  function onDeleteHandle(id: number) {
+    return (evt: MouseEvent<HTMLButtonElement>) => {
+      evt.preventDefault();
+
+      dispatch(deleteProductApi(id));
+    }
+  }
 
   const productsBlock = products.map((product) =>
       <ProductItem
@@ -20,6 +31,7 @@ function ProductsListPage(): JSX.Element {
         createdDate={product.createdAt ?? new Date}
         title={product.title}
         price={product.price}
+        onDeleteHandle={onDeleteHandle(product.id ?? 0)}
       />
   );
 

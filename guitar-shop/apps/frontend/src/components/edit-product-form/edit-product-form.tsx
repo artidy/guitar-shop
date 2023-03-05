@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { ChangeEvent, FormEvent, Reducer, useReducer } from 'react';
+import { ChangeEvent, FormEvent, Reducer, useReducer, MouseEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { AppRoute, GUITAR_STRINGS, GUITAR_TYPES, IMAGE_FOLDER } from '../../conts';
 import RadioBtn from '../radio-btn/radio-btn';
@@ -14,12 +14,14 @@ type ProductCardProps = {
 }
 
 const createData = new Date();
+const STRINGS_INPUT_NAME = 'string-qty';
 
 function EditProductForm({product, onSubmit}: ProductCardProps): JSX.Element {
   const [productData, dispatchProductData] = useReducer<Reducer<Product, EditProductAction>>(
     editProductFormReducer,
     product
   );
+  const navigate = useNavigate();
 
   const {
     id,
@@ -36,7 +38,7 @@ function EditProductForm({product, onSubmit}: ProductCardProps): JSX.Element {
     <RadioBtn
       key={id}
       id={id}
-      name={'item-type'}
+      name="item-type"
       value={value}
       title={title}
       onChange={onChangeInput(EditProductActionType.setType)}
@@ -46,9 +48,9 @@ function EditProductForm({product, onSubmit}: ProductCardProps): JSX.Element {
 
   const stringsContent = GUITAR_STRINGS.map((value) => (
     <RadioBtn
-      key={`string-qty-${value}`}
-      id={`string-qty-${value}`}
-      name={'string-qty'}
+      key={`${STRINGS_INPUT_NAME}-${value}`}
+      id={`${STRINGS_INPUT_NAME}-${value}`}
+      name={STRINGS_INPUT_NAME}
       value={value}
       title={value.toString()}
       onChange={onChangeInput(EditProductActionType.setStrings)}
@@ -70,6 +72,12 @@ function EditProductForm({product, onSubmit}: ProductCardProps): JSX.Element {
     evt.preventDefault();
 
     onSubmit(productData);
+  }
+
+  function onReturnHandler(evt: MouseEvent<HTMLButtonElement>) {
+    evt.preventDefault();
+
+    navigate(AppRoute.Products);
   }
 
   return (
@@ -163,13 +171,13 @@ function EditProductForm({product, onSubmit}: ProductCardProps): JSX.Element {
       </div>
       <div className="edit-item__form-buttons-wrap">
         <button className="button button--small edit-item__form-button" type="submit">Сохранить изменения</button>
-        <Link
-          to={AppRoute.Products}
+        <button
+          onClick={onReturnHandler}
           className="button button--small edit-item__form-button"
           type="button"
         >
           Вернуться к списку товаров
-        </Link>
+        </button>
       </div>
     </form>
   )
